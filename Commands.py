@@ -6,9 +6,13 @@ from xml.etree.ElementTree import tostring
 import discord
 import requests
 import pyfiglet
+import io
+import matplotlib.pyplot as plt
+import numpy as np
 
 #VARIABLES========================================================================
-commandList = ['$ping','$commands','$cpp','$java','$ascii','$ascii_fonts','$sort']
+commandList = ['$ping','$plot']
+#,'$commands','$cpp','$java','$ascii','$ascii_fonts','$sort']
 ascii_art_fonts = pyfiglet.FigletFont.getFonts()
 defualt_font = "univers"
 #VARIABLES========================================================================
@@ -35,6 +39,47 @@ async def execute(command,args,message):
     if command == '$ping':
         await message.channel.send('**Pong!**')
         return
+    
+    if command == '$plot':
+        #defaults
+        x_start = 0
+        x_end = 10
+        points = 100
+        x_label = 'x'
+        y_label = 'f(x)'
+        title = 'Plot'
+        
+        #parsing user args
+        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+        print(f"Parsed arguments are: {keyed_args}")
+        if len(keyed_args) > 0:
+            if 'from' in keyed_args:
+                if keyed_args['from'].isnumeric():
+                    x_start = keyed_args['from']
+            if 'to' in keyed_args:
+                if keyed_args['to'].isnumeric():
+                    x_end = keyed_args['to']
+            if 'points' in keyed_args:
+                if keyed_args['points'].isnumeric():
+                    points = keyed_args['points']
+                    
+                
+
+        #plot
+        x = np.linspace(int(x_start), int(x_end), int(points)) 
+        func = x*x
+        plt.figure()
+        plt.plot(x, func)
+        plt.title(title)
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        
+        # Save the plot to a BytesIO object
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)  # Rewind the buffer to the beginning so it can be read
+        plt.close()  # Close the figure to free up memory
+        await message.channel.send(file=discord.File(buf, 'plot.png'))
 
 #    if cID == 1:
 #        
