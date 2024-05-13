@@ -13,8 +13,6 @@ import numpy as np
 import numexpr as ne
 
 #VARIABLES========================================================================
-commandList = ['$ping','$plot','$man']
-#,'$commands','$cpp','$java','$ascii','$ascii_fonts','$sort']
 ascii_art_fonts = pyfiglet.FigletFont.getFonts()
 defualt_font = "univers"
 #VARIABLES========================================================================
@@ -22,21 +20,22 @@ defualt_font = "univers"
 
 
 #core func
-async def callCommand(message):
+async def callCommand(message,prefix):
     
     #just to be sure
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man"]
     message_raw = (message.content).strip()
     args = message_raw.split()
     print(args)
 
     #identify the command
     if args[0] in commandList:
-        await execute(args[0],args,message);
+        await execute(args[0],args,message,prefix);
         return
     await message.channel.send(f'I dont recognize \"' + str(args[0]) +'\" as a command.')
     return
 
-async def execute(command,args,message):
+async def execute(command,args,message,prefix):
     #execute the command
     if command == '$ping':
         await message.channel.send('**Pong!**')
@@ -54,6 +53,8 @@ async def execute(command,args,message):
         title = 'Plot'
         x = np.linspace(int(x_start), int(x_end), int(points))
         func = x
+        show_grid = True
+        
         
         #parsing user args
         keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
