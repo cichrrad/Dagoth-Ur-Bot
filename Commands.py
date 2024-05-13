@@ -8,10 +8,12 @@ import requests
 import pyfiglet
 import io
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 import numpy as np
+import numexpr as ne
 
 #VARIABLES========================================================================
-commandList = ['$ping','$plot']
+commandList = ['$ping','$plot','$man']
 #,'$commands','$cpp','$java','$ascii','$ascii_fonts','$sort']
 ascii_art_fonts = pyfiglet.FigletFont.getFonts()
 defualt_font = "univers"
@@ -42,44 +44,129 @@ async def execute(command,args,message):
     
     if command == '$plot':
         #defaults
-        x_start = 0
+        x_start = -10
         x_end = 10
         points = 100
         x_label = 'x'
         y_label = 'f(x)'
+        x_ticks = 5  # Default number of ticks on the x-axis
+        y_ticks = 5  # Default number of ticks on the y-axis
         title = 'Plot'
+        x = np.linspace(int(x_start), int(x_end), int(points))
+        func = x
         
         #parsing user args
         keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
         print(f"Parsed arguments are: {keyed_args}")
-        if len(keyed_args) > 0:
-            if 'from' in keyed_args:
-                if keyed_args['from'].isnumeric():
-                    x_start = keyed_args['from']
-            if 'to' in keyed_args:
-                if keyed_args['to'].isnumeric():
-                    x_end = keyed_args['to']
-            if 'points' in keyed_args:
-                if keyed_args['points'].isnumeric():
-                    points = keyed_args['points']
-                    
-                
+        # Validate and set 'from' (x_start)
+        if 'from' in keyed_args:
+            try:
+                x_start = float(keyed_args['from'])
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'from': {keyed_args['from']}. Using default = {x_start}")
+
+        # Validate and set 'to' (x_end)
+        if 'to' in keyed_args:
+            try:
+                x_end = float(keyed_args['to'])
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'to': {keyed_args['to']}. Using default = {x_end}")
+
+        # Validate and set 'points'
+        if 'points' in keyed_args:
+            try:
+                points = int(keyed_args['points'])
+                if points <= 0:
+                    raise ValueError("Points must be a positive integer")
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'points': {keyed_args['points']}. Using default = {points}")
+
+        if 'xTicks' in keyed_args:
+            try:
+                x_ticks = int(keyed_args['xTicks'])
+                if x_ticks <= 0:
+                    raise ValueError("xTicks must be a positive integer")
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'xTicks': {keyed_args['xTicks']}. Using default xTicks={x_ticks}")
+
+        if 'yTicks' in keyed_args:
+            try:
+                y_ticks = int(keyed_args['yTicks'])
+                if y_ticks <= 0:
+                    raise ValueError("yTicks must be a positive integer")
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'yTicks': {keyed_args['yTicks']}. Using default yTicks={y_ticks}")
+
+        if 'grid' in keyed_args:
+            show_grid = keyed_args['grid'].lower() == 'true'
+
+
+        if 'function' in keyed_args:
+            expression = keyed_args['function']
+            try:
+                x = np.linspace(int(x_start), int(x_end), int(points))
+                func = ne.evaluate(expression, local_dict={'x': x})
+            except Exception as e:
+                await message.channel.send(f"Failed to evaluate function '{expression}': {e}")
+                func = x
 
         #plot
-        x = np.linspace(int(x_start), int(x_end), int(points)) 
-        func = x*x
+        x = np.linspace(int(x_start), int(x_end), int(points))
         plt.figure()
         plt.plot(x, func)
         plt.title(title)
         plt.xlabel(x_label)
         plt.ylabel(y_label)
-        
+        plt.gca().xaxis.set_major_locator(MaxNLocator(nbins=x_ticks))
+        plt.gca().yaxis.set_major_locator(MaxNLocator(nbins=y_ticks))
+        if show_grid:
+            plt.grid(True)
+
         # Save the plot to a BytesIO object
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
         buf.seek(0)  # Rewind the buffer to the beginning so it can be read
         plt.close()  # Close the figure to free up memory
         await message.channel.send(file=discord.File(buf, 'plot.png'))
+
+    if command == '$man':
+        
+        if args[1] == 'ping':
+            await message.channel.send(
+                "**$ping Command**\n"
+                "Usage: `$ping`\n"
+                "Description: Sends a simple message to test the responsiveness of the bot.\n"
+                "Example:\n"
+                "```\n"
+                "$ping\n"
+                "```\n"
+                "The bot will respond with '**Pong!**' to indicate it is online and responsive."
+            )
+            return
+        
+        if args[1] == 'plot':
+            await message.channel.send(
+                "**$plot Command**\n"
+                "Usage: `$plot [options]`\n"
+                "Description: Plots a mathematical function based on specified parameters.\n"
+                "Options:\n"
+                "- `function=<function>`: Specifies the mathematical function to plot (e.g., `x**2`, `sin(x)`). default is 'x'. DO NOT USE SPACES when defining a function\n"
+                "- `from=<value>`: Specifies the starting value of the x-axis. Default is `-10`.\n"
+                "- `to=<value>`: Specifies the ending value of the x-axis. Default is `10`.\n"
+                "- `points=<integer>`: Specifies the number of points to calculate for the plot. Default is `100`.\n"
+                "- `xTicks=<integer>`: Specifies the number of ticks on the x-axis. Default is `5`.\n"
+                "- `yTicks=<integer>`: Specifies the number of ticks on the y-axis. Default is `5`.\n"
+                "- `grid=<true/false>`: Specifies whether to display a grid. Default is `false`.\n"
+                "Example:\n"
+                "```\n"
+                "$plot function=sin(x) from=0 to=7 points=100 xTicks=10 yTicks=5 grid=true\n"
+                "```\n"
+                "This command will plot the sine function from 0 to 7, with a grid and specified ticks on the axes."
+            )
+            return
+
+        await message.channel.send(f"I dont know what \"{args[1]}\" means.")
+        return
 
 #    if cID == 1:
 #        
