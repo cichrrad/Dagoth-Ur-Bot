@@ -38,7 +38,7 @@ async def on_message(message):
     #if the message starts with '$' -> fetchCommand()
     if message.content.startswith(command_prefix):
         
-        await commands.callCommand(message)
+        await commands.callCommand(message,command_prefix)
         
 
 print(bot_token)

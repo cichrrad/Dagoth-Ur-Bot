@@ -23,33 +23,33 @@ defualt_font = "univers"
 async def callCommand(message,prefix):
     
     #just to be sure
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man"]
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands"]
     message_raw = (message.content).strip()
     args = message_raw.split()
     print(args)
 
     #identify the command
     if args[0] in commandList:
-        await execute(args[0],args,message,prefix);
+        await execute(args[0],args,message,prefix,commandList);
         return
     await message.channel.send(f'I dont recognize \"' + str(args[0]) +'\" as a command.')
     return
 
-async def execute(command,args,message,prefix):
+async def execute(command,args,message,prefix,commandList):
     #execute the command
-    if command == '$ping':
+    if command == f"{prefix}ping":
         await message.channel.send('**Pong!**')
         return
     
-    if command == '$plot':
+    if command == f"{prefix}plot":
         #defaults
         x_start = -10
         x_end = 10
         points = 100
         x_label = 'x'
         y_label = 'f(x)'
-        x_ticks = 5  # Default number of ticks on the x-axis
-        y_ticks = 5  # Default number of ticks on the y-axis
+        x_ticks = 'auto'  # Default number of ticks on the x-axis
+        y_ticks = 'auto'  # Default number of ticks on the y-axis
         title = 'Plot'
         x = np.linspace(int(x_start), int(x_end), int(points))
         func = x
@@ -101,6 +101,8 @@ async def execute(command,args,message,prefix):
         if 'grid' in keyed_args:
             show_grid = keyed_args['grid'].lower() == 'true'
 
+        if 'title' in keyed_args:
+            title = keyed_args['title']
 
         if 'function' in keyed_args:
             expression = keyed_args['function']
@@ -118,8 +120,10 @@ async def execute(command,args,message,prefix):
         plt.title(title)
         plt.xlabel(x_label)
         plt.ylabel(y_label)
-        plt.gca().xaxis.set_major_locator(MaxNLocator(nbins=x_ticks))
-        plt.gca().yaxis.set_major_locator(MaxNLocator(nbins=y_ticks))
+        if x_ticks != 'auto':
+            plt.gca().xaxis.set_major_locator(MaxNLocator(nbins=x_ticks))
+        if y_ticks != 'auto':
+            plt.gca().yaxis.set_major_locator(MaxNLocator(nbins=y_ticks))
         if show_grid:
             plt.grid(True)
 
@@ -130,8 +134,25 @@ async def execute(command,args,message,prefix):
         plt.close()  # Close the figure to free up memory
         await message.channel.send(file=discord.File(buf, 'plot.png'))
 
-    if command == '$man':
+    if command == f"{prefix}man":
         
+        if len(args) == 1 or args[1] == 'man':
+            await message.channel.send(
+                "**$man Command**\n"
+                "Usage: `$man <command>`\n"
+                "Description: Provides detailed information about how to use a specified command.\n"
+                "When `<command>` is specified, `$man` returns information such as the usage, description, "
+                "parameters, and examples for the specified command.\n\n"
+                "If `<command>` is `man`, this meta-command displays information about how to use the `$man` command itself.\n\n"
+                "Example:\n"
+                "```\n"
+                "$man plot\n"
+                "```\n"
+                "This example would return detailed usage information about the `$plot` command, explaining how to use it, "
+                "what parameters it accepts, and providing a sample command invocation."
+            )
+            return
+         
         if args[1] == 'ping':
             await message.channel.send(
                 "**$ping Command**\n"
@@ -151,13 +172,14 @@ async def execute(command,args,message,prefix):
                 "Usage: `$plot [options]`\n"
                 "Description: Plots a mathematical function based on specified parameters.\n"
                 "Options:\n"
-                "- `function=<function>`: Specifies the mathematical function to plot (e.g., `x**2`, `sin(x)`). default is 'x'. DO NOT USE SPACES when defining a function\n"
+                "- `function=<function>`: Specifies the mathematical function to plot (e.g., `x**2`, `sin(x)`). default is `x`. DO NOT USE SPACES when defining a function\n"
                 "- `from=<value>`: Specifies the starting value of the x-axis. Default is `-10`.\n"
                 "- `to=<value>`: Specifies the ending value of the x-axis. Default is `10`.\n"
                 "- `points=<integer>`: Specifies the number of points to calculate for the plot. Default is `100`.\n"
-                "- `xTicks=<integer>`: Specifies the number of ticks on the x-axis. Default is `5`.\n"
-                "- `yTicks=<integer>`: Specifies the number of ticks on the y-axis. Default is `5`.\n"
+                "- `xTicks=<integer>`: Specifies the number of ticks on the x-axis. Defauilt is `auto`.\n"
+                "- `yTicks=<integer>`: Specifies the number of ticks on the y-axis. Default is `auto`.\n"
                 "- `grid=<true/false>`: Specifies whether to display a grid. Default is `false`.\n"
+                "- `title=<string>`: Specifies graph title. Default is `Plot`.\n"
                 "Example:\n"
                 "```\n"
                 "$plot function=sin(x) from=0 to=7 points=100 xTicks=10 yTicks=5 grid=true\n"
@@ -169,6 +191,13 @@ async def execute(command,args,message,prefix):
         await message.channel.send(f"I dont know what \"{args[1]}\" means.")
         return
 
+    if command == f"{prefix}commands":
+        text = '```\n'
+        for command in commandList:
+            text = text + str(command)
+            text = text + '\n'
+        text = text + '```'
+        await message.channel.send(text)
 #    if cID == 1:
 #        
 #        comL ="```\n"
