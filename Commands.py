@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import numpy as np
 import numexpr as ne
+from translate import Translator
+import shlex 
+
 
 #VARIABLES========================================================================
 ascii_art_fonts = pyfiglet.FigletFont.getFonts()
@@ -23,9 +26,9 @@ defualt_font = "univers"
 async def callCommand(message,prefix):
     
     #just to be sure
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands"]
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate"]
     message_raw = (message.content).strip()
-    args = message_raw.split()
+    args = shlex.split(message_raw)
     print(args)
 
     #identify the command
@@ -188,6 +191,21 @@ async def execute(command,args,message,prefix,commandList):
             )
             return
 
+        if args[1] == 'commands':
+            await message.channel.send(
+                "**$commands Command**\n"
+                "Usage: `$commands`\n"
+                "Description: Lists available commands.\n"
+                "Options: Takes no arguments.\n"
+                "Example:\n"
+                "```\n"
+                "$commnads\n"
+                "```\n"
+                "This command will list all currently enabled commands."
+            )
+            return
+
+
         await message.channel.send(f"I dont know what \"{args[1]}\" means.")
         return
 
@@ -198,6 +216,27 @@ async def execute(command,args,message,prefix,commandList):
             text = text + '\n'
         text = text + '```'
         await message.channel.send(text)
+
+    if command == f"{prefix}translate":
+
+        if len(args) >= 4: 
+            from_lang = args[1].split('=')[1]
+            to_lang = args[2].split('=')[1]
+            text = args[3].split('=')[1]
+
+            translator = Translator(from_lang=from_lang, to_lang=to_lang)
+            translation = translator.translate(text)
+            if 'INVALID SOURCE LANGUAGE' in translation:
+                translation = f"Bad language code. See ```https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes```";
+                await message.channel.send(f'{translation} (set 1) column.')
+                return
+            await message.channel.send(f'Translated Text: {translation}')
+            return
+        else:
+            await message.channel.send("Usage: `$translate from=<language> to=<language> text=\"<text to translate>\"`")
+            return
+        
+
 #    if cID == 1:
 #        
 #        comL ="```\n"
