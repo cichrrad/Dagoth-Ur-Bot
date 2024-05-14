@@ -40,8 +40,6 @@ async def on_message(message):
         
         await commands.callCommand(message,command_prefix)
         
-
-print(bot_token)
 #LAST COMMAND - STARTS THE BOT
 bot_client.run(str(bot_token))
 
