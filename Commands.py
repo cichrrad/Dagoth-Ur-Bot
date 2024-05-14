@@ -26,7 +26,7 @@ defualt_font = "univers"
 async def callCommand(message,prefix):
     
     #just to be sure
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate"]
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort"]
     message_raw = (message.content).strip()
     args = shlex.split(message_raw)
     print(args)
@@ -205,6 +205,38 @@ async def execute(command,args,message,prefix,commandList):
             )
             return
 
+        if args[1] == 'translate':
+            await message.channel.send(
+                "**$translate Command**\n"
+                "Usage: `$translate from=<source_lang> to=<target_lang> text=\"<text to translate>\"`\n"
+                "Description: Translates the specified text from the source language to the target language.\n"
+                "Options:\n"
+                "- `from=<source_lang>`: Specifies the ISO 639-1 code of the source language.\n"
+                "- `to=<target_lang>`: Specifies the ISO 639-1 code of the target language.\n"
+                "- `text=\"<text to translate>\"`: The text to be translated. Ensure the text is enclosed in double quotes.\n"
+                "Examples:\n"
+                "```\n"
+                "$translate from=en to=es text=\"Hello, how are you?\"\n"
+                "```\n"
+                "The first example translates 'Hello, how are you?' from English to Spanish. The second example lists all supported languages."
+            )
+            return
+
+        if args[1] == 'sort':
+            await message.channel.send(
+                "**$sort Command**\n"
+                "Usage: `$sort data=<list> mode=<mode>`\n"
+                "Description: Sorts a list of elements in ascending or descending order.\n"
+                "Options:\n"
+                "- `data=<list>`: A comma-separated list of elements to be sorted.\n"
+                "- `mode=<mode>`: Specifies the sorting mode; 'up' for ascending (default) or 'down' for descending.\n"
+                "Example:\n"
+                "```\n"
+                "$sort data=5,2,9,1 mode=up\n"
+                "```\n"
+                "This command sorts the numbers [5, 2, 9, 1] in ascending order."
+            )
+            return
 
         await message.channel.send(f"I dont know what \"{args[1]}\" means.")
         return
@@ -216,13 +248,22 @@ async def execute(command,args,message,prefix,commandList):
             text = text + '\n'
         text = text + '```'
         await message.channel.send(text)
+        return
 
     if command == f"{prefix}translate":
+    
+            keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+            print(f"Parsed arguments are: {keyed_args}")
+            from_lang = 'none'
+            to_lang = 'none'
+            text = 'none'
 
-        if len(args) >= 4: 
-            from_lang = args[1].split('=')[1]
-            to_lang = args[2].split('=')[1]
-            text = args[3].split('=')[1]
+            if 'from' in keyed_args:
+                from_lang = keyed_args['from']
+            if 'to' in keyed_args:
+                to_lang = keyed_args['to']
+            if 'text' in keyed_args:
+                text = keyed_args['text']
 
             translator = Translator(from_lang=from_lang, to_lang=to_lang)
             translation = translator.translate(text)
@@ -232,11 +273,26 @@ async def execute(command,args,message,prefix,commandList):
                 return
             await message.channel.send(f'Translated Text: {translation}')
             return
-        else:
-            await message.channel.send("Usage: `$translate from=<language> to=<language> text=\"<text to translate>\"`")
-            return
         
+    if command == f"{prefix}sort":
+        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+        
+        mode = 'up'
+        if 'mode' in keyed_args:
+            mode = keyed_args['mode']
 
+        if 'data' in keyed_args:
+            data = keyed_args['data'].split(',')
+            if mode == 'up':
+                data.sort()
+            elif mode == 'down':
+                data.sort(reverse=True)
+            else:
+               await message.channel.send(f"unknown mode \"{mode}\"")
+               return 
+        await message.channel.send(f"```{data}```")
+        return
+    
 #    if cID == 1:
 #        
 #        comL ="```\n"
