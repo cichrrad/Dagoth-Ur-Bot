@@ -13,6 +13,7 @@ import numpy as np
 import numexpr as ne
 from translate import Translator
 import shlex 
+import random
 
 
 #VARIABLES========================================================================
@@ -21,12 +22,11 @@ defualt_font = "univers"
 #VARIABLES========================================================================
 
 
-
 #core func
 async def callCommand(message,prefix):
     
     #just to be sure
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort"]
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort", f"{prefix}roll"]
     message_raw = (message.content).strip()
     args = shlex.split(message_raw)
     print(args)
@@ -234,7 +234,7 @@ async def execute(command,args,message,prefix,commandList):
                 "```\n"
                 "$sort data=5,2,9,1 mode=up\n"
                 "```\n"
-                "This command sorts the numbers [5, 2, 9, 1] in ascending order."
+                "This command sorts the numbers [5, 2, 9, 1] in ascending order. Note that leading zeros mess up the sort, as the numbers are sorted via lexical order (which is the same as numeric EXCEPT with leading zeros)."
             )
             return
 
@@ -292,6 +292,36 @@ async def execute(command,args,message,prefix,commandList):
                return 
         await message.channel.send(f"```{data}```")
         return
+
+    if command == f"{prefix}roll":
+        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+        
+        start = 1;
+        end = 6;
+        
+        if 'from' in keyed_args:
+            try:
+                start = int(keyed_args['from'])
+                if start < 0:
+                    raise ValueError("range must start from a non-negative integer")
+                    start = 1
+            except ValueError:
+                start = 1
+                await message.channel.send(f"Invalid input for 'from': {keyed_args['from']}. Using default = {start}")
+        if 'to' in keyed_args:
+            try:
+                end = int(keyed_args['to'])
+                if end < 0:
+                    raise ValueError("range must end with a non-negative integer")
+                    end = 6
+            except ValueError:
+                end = 6
+                await message.channel.send(f"Invalid input for 'to': {keyed_args['to']}. Using default = {end}")
+
+        num = random.randrange(start,end,1)
+        await message.channel.send(f"```{num}```")
+        return        
+                      
     
 #    if cID == 1:
 #        
