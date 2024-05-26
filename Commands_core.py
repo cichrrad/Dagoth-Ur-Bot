@@ -14,12 +14,14 @@ import numexpr as ne
 from translate import Translator
 import shlex 
 import random
+import requests
+from bs4 import BeautifulSoup
 
 #core func
 async def callCommand(message,prefix):
     
     #REGISTER COMMANDS HERE
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort", f"{prefix}roll"]
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen"]
     
     
     #PARSING COMMANDS HERE
@@ -214,7 +216,53 @@ async def execute(command,args,message,prefix,commandList):
             _sum = _sum + rolled
             rolls = rolls + f"[{str(rolled)}]\n"
         avg = _sum / count
-        await message.channel.send(f"```\n{rolls}\n=============\nAverage value = {str(avg)}```")
+        avg = round(avg,4)
+        await message.channel.send(f"```\n{rolls}==========================\nAverage value = {str(avg)}\n==========================```")
+
+    #MORROWGEN
+    if command == f"{prefix}morrowgen":
+        #establish default values
+        race = 'default'
+        race_list=["Argonian", "Breton", "Dark Elf", "High Elf", "Imperial", "Khajiit", "Nord", "Orc", "Redguard", "Wood Elf"]
+        specialization='default'
+        specialization_list=["Combat","Magic","Stealth"]
+        favored_attributes='default'
+        favored_attributes_list=["Strength", "Intelligence", "Willpower", "Agility", "Speed", "Endurance", "Personality", "Luck"]
+        birthsign='default'
+        birthsign_list=["The Apprentice", "The Atronach", "The Lady", "The Lord", "The Lover", "The Mage", "The Ritual", "The Serpent", "The Shadow", "The Steed", "The Thief", "The Tower", "The Warrior"]
+        major_skills='default'
+        minor_skills='default'
+        skills_list=["Alchemy", "Alteration", "Armorer", "Athletics", "Axe", "Block", "Blunt Weapon", "Conjuration", "Destruction", "Enchant", "Hand-to-hand", "Heavy Armor", "Illusion", "Light Armor", "Long Blade", "Marksman", "Medium Armor", "Mercantile", "Mysticism", "Restoration", "Security", "Short Blade", "Sneak", "Spear", "Speechcraft", "Unarmored"]
+
+        sex='default'
+        sex_list=["Male","Female"]
+        # Choose 1 specialization
+        chosen_specialization = random.choice(specialization_list)
+        chosen_sex = random.choice(sex_list)
+
+        # Choose 2 favored attributes (cannot choose the same twice)
+        chosen_favored_attributes = random.sample(favored_attributes_list, 2)
+
+        # Choose 1 race
+        chosen_race = random.choice(race_list)
+
+        # Choose 5 major skills and 5 minor skills (no duplicates)
+        chosen_skills = random.sample(skills_list, 10)
+        chosen_major_skills = chosen_skills[:5]
+        chosen_minor_skills = chosen_skills[5:]
+
+        # Choose 1 birthsign
+        chosen_birthsign = random.choice(birthsign_list)
+        out ="```\n"
+        out = out + f"Race: {chosen_race}\n\n"
+        out = out + f"Sex: {chosen_sex}\n\n"
+        out = out + f"Name: WIP (see \"https://modding-openmw.com/name-generator/\" for now)\n\n"
+        out = out + f"Specialization: {chosen_specialization}\n\n"
+        out = out + f"Favored Attributes: {chosen_favored_attributes}\n\n"
+        out = out + f"Major Skills: {chosen_major_skills}\n\n"
+        out = out + f"Minor Skills: {chosen_minor_skills}\n\n"
+        out = out + f"Birthsign: {chosen_birthsign}\n```"
+        await message.channel.send(out)
 
 
     #COMMANDS
@@ -342,6 +390,20 @@ async def execute(command,args,message,prefix,commandList):
                 "$roll sides=20 count=3\n"
                 "```\n"
                 "This command will roll three 20-sided dice and return the results."
+            )
+            return
+
+        if args[1] == 'morrowgen':
+            await message.channel.send(
+                "**$morrowgen Command**\n"
+                "Usage: `$morrowgen`\n"
+                "Description: Generates a random character for the game Morrowind with various attributes and skills.\n"
+                "Options: Takes no arguments. (for now)\n"
+                "Example:\n"
+                "```\n"
+                "$morrowgen\n"
+                "```\n"
+                "This command generates a random Morrowind character with attributes such as race, sex, specialization, favored attributes, major skills, minor skills, and birthsign."
             )
             return
 
