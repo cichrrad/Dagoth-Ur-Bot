@@ -13,6 +13,7 @@ import numpy as np
 import numexpr as ne
 from translate import Translator
 import shlex 
+import random
 
 #core func
 async def callCommand(message,prefix):
@@ -35,11 +36,13 @@ async def callCommand(message,prefix):
     return
 
 async def execute(command,args,message,prefix,commandList):
-    #execute the command
+    
+    #PING
     if command == f"{prefix}ping":
         await message.channel.send('**Pong!**')
         return
     
+    #PLOT
     if command == f"{prefix}plot":
         #defaults
         x_start = -10
@@ -133,6 +136,98 @@ async def execute(command,args,message,prefix,commandList):
         plt.close()  # Close the figure to free up memory
         await message.channel.send(file=discord.File(buf, 'plot.png'))
 
+    #TRANSLATE
+    if command == f"{prefix}translate":
+    
+            keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+            print(f"Parsed arguments are: {keyed_args}")
+            from_lang = 'none'
+            to_lang = 'none'
+            text = 'none'
+
+            if 'from' in keyed_args:
+                from_lang = keyed_args['from']
+            if 'to' in keyed_args:
+                to_lang = keyed_args['to']
+            if 'text' in keyed_args:
+                text = keyed_args['text']
+
+            translator = Translator(from_lang=from_lang, to_lang=to_lang)
+            translation = translator.translate(text)
+            if 'INVALID SOURCE LANGUAGE' in translation:
+                translation = f"Bad language code. See ```https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes```";
+                await message.channel.send(f'{translation} (set 1) column.')
+                return
+            await message.channel.send(f'Translated Text: {translation}')
+            return
+        
+    #SORT    
+    if command == f"{prefix}sort":
+        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+        
+        mode = 'up'
+        if 'mode' in keyed_args:
+            mode = keyed_args['mode']
+
+        if 'data' in keyed_args:
+            data = keyed_args['data'].split(',')
+            if mode == 'up':
+                data.sort()
+            elif mode == 'down':
+                data.sort(reverse=True)
+            else:
+               await message.channel.send(f"unknown mode \"{mode}\"")
+               return 
+        await message.channel.send(f"```{data}```")
+        return
+
+    #ROLL
+    if command == f"{prefix}roll":
+        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+        sides = 6
+        count = 1
+
+        if 'sides' in keyed_args:
+            try:
+                parsedSides = int(keyed_args['sides'])
+                if parsedSides <= 0:
+                    raise ValueError(f"Cannot roll a non-positive sided die (duh). Using default = {sides}")
+                else:
+                    sides = parsedSides
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'sides': {keyed_args['sides']}. Using default = {sides}")
+        
+        if 'count' in keyed_args:
+            try:
+                parsedCount = int(keyed_args['count'])
+                if parsedCount <= 0:
+                    raise ValueError(f"Cannot roll a non-positive number of dice (duh). Using default = {count}")
+                else:
+                    count = parsedCount
+            except ValueError:
+                await message.channel.send(f"Invalid input for 'count': {keyed_args['count']}. Using default = {count}")
+
+        rolls = ""
+        _sum = 0
+        for roll in range(0,count,1):
+            rolled = random.randint(1,sides)
+            _sum = _sum + rolled
+            rolls = rolls + f"[{str(rolled)}]\n"
+        avg = _sum / count
+        await message.channel.send(f"```\n{rolls}\n=============\nAverage value = {str(avg)}```")
+
+
+    #COMMANDS
+    if command == f"{prefix}commands":
+        text = '```\n'
+        for command in commandList:
+            text = text + str(command)
+            text = text + '\n'
+        text = text + '```'
+        await message.channel.send(text)
+        return
+
+    #MAN
     if command == f"{prefix}man":
         
         if len(args) == 1 or args[1] == 'man':
@@ -234,58 +329,24 @@ async def execute(command,args,message,prefix,commandList):
             )
             return
 
+        if args[1] == 'roll':
+            await message.channel.send(
+                "**$roll Command**\n"
+                "Usage: `$roll [sides=<number>] [count=<number>]`\n"
+                "Description: Rolls a specified number of dice with a specified number of sides and returns the results.\n"
+                "Options:\n"
+                "- `sides=<number>`: Specifies the number of sides on each die. Default is `6`.\n"
+                "- `count=<number>`: Specifies the number of dice to roll. Default is `1`.\n"
+                "Example:\n"
+                "```\n"
+                "$roll sides=20 count=3\n"
+                "```\n"
+                "This command will roll three 20-sided dice and return the results."
+            )
+            return
+
         await message.channel.send(f"I dont know what \"{args[1]}\" means.")
         return
-
-    if command == f"{prefix}commands":
-        text = '```\n'
-        for command in commandList:
-            text = text + str(command)
-            text = text + '\n'
-        text = text + '```'
-        await message.channel.send(text)
-        return
-
-    if command == f"{prefix}translate":
     
-            keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
-            print(f"Parsed arguments are: {keyed_args}")
-            from_lang = 'none'
-            to_lang = 'none'
-            text = 'none'
 
-            if 'from' in keyed_args:
-                from_lang = keyed_args['from']
-            if 'to' in keyed_args:
-                to_lang = keyed_args['to']
-            if 'text' in keyed_args:
-                text = keyed_args['text']
-
-            translator = Translator(from_lang=from_lang, to_lang=to_lang)
-            translation = translator.translate(text)
-            if 'INVALID SOURCE LANGUAGE' in translation:
-                translation = f"Bad language code. See ```https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes```";
-                await message.channel.send(f'{translation} (set 1) column.')
-                return
-            await message.channel.send(f'Translated Text: {translation}')
-            return
-        
-    if command == f"{prefix}sort":
-        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
-        
-        mode = 'up'
-        if 'mode' in keyed_args:
-            mode = keyed_args['mode']
-
-        if 'data' in keyed_args:
-            data = keyed_args['data'].split(',')
-            if mode == 'up':
-                data.sort()
-            elif mode == 'down':
-                data.sort(reverse=True)
-            else:
-               await message.channel.send(f"unknown mode \"{mode}\"")
-               return 
-        await message.channel.send(f"```{data}```")
-        return
     return
