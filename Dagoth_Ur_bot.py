@@ -6,7 +6,7 @@ from xml.etree.ElementTree import tostring
 
 
 import discord
-import Commands as commands
+import Commands_core as commands
 import configparser
 
 intents = discord.Intents.default()

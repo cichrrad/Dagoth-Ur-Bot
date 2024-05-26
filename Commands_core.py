@@ -15,6 +15,7 @@ from translate import Translator
 import shlex 
 import random
 
+<<<<<<< HEAD:Commands.py
 
 #VARIABLES========================================================================
 ascii_art_fonts = pyfiglet.FigletFont.getFonts()
@@ -27,14 +28,25 @@ async def callCommand(message,prefix):
     
     #just to be sure
     commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort", f"{prefix}roll"]
+=======
+#core func
+async def callCommand(message,prefix):
+    
+    #REGISTER COMMANDS HERE
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort"]
+    
+    
+    #PARSING COMMANDS HERE
+>>>>>>> ec180fd (restructured):Commands_core.py
     message_raw = (message.content).strip()
     args = shlex.split(message_raw)
     print(args)
 
-    #identify the command
+    #IDENTIFY COMMANDS HERE
     if args[0] in commandList:
         await execute(args[0],args,message,prefix,commandList);
         return
+    #failed to identify
     await message.channel.send(f'I dont recognize \"' + str(args[0]) +'\" as a command.')
     return
 
@@ -292,6 +304,7 @@ async def execute(command,args,message,prefix,commandList):
                return 
         await message.channel.send(f"```{data}```")
         return
+<<<<<<< HEAD:Commands.py
 
     if command == f"{prefix}roll":
         keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
@@ -402,3 +415,6 @@ async def execute(command,args,message,prefix,commandList):
 #        await message.delete()
 #        await message.channel.send("```\n"+str(elements)+"\n```")
 #        return
+=======
+    return
+>>>>>>> ec180fd (restructured):Commands_core.py
