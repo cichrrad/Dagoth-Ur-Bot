@@ -13,31 +13,15 @@ import numpy as np
 import numexpr as ne
 from translate import Translator
 import shlex 
-import random
 
-<<<<<<< HEAD:Commands.py
-
-#VARIABLES========================================================================
-ascii_art_fonts = pyfiglet.FigletFont.getFonts()
-defualt_font = "univers"
-#VARIABLES========================================================================
-
-
-#core func
-async def callCommand(message,prefix):
-    
-    #just to be sure
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort", f"{prefix}roll"]
-=======
 #core func
 async def callCommand(message,prefix):
     
     #REGISTER COMMANDS HERE
-    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort"]
+    commandList = [f"{prefix}ping",f"{prefix}plot",f"{prefix}man",f"{prefix}commands",f"{prefix}translate",f"{prefix}sort", f"{prefix}roll"]
     
     
     #PARSING COMMANDS HERE
->>>>>>> ec180fd (restructured):Commands_core.py
     message_raw = (message.content).strip()
     args = shlex.split(message_raw)
     print(args)
@@ -246,7 +230,7 @@ async def execute(command,args,message,prefix,commandList):
                 "```\n"
                 "$sort data=5,2,9,1 mode=up\n"
                 "```\n"
-                "This command sorts the numbers [5, 2, 9, 1] in ascending order. Note that leading zeros mess up the sort, as the numbers are sorted via lexical order (which is the same as numeric EXCEPT with leading zeros)."
+                "This command sorts the numbers [5, 2, 9, 1] in ascending order."
             )
             return
 
@@ -304,117 +288,4 @@ async def execute(command,args,message,prefix,commandList):
                return 
         await message.channel.send(f"```{data}```")
         return
-<<<<<<< HEAD:Commands.py
-
-    if command == f"{prefix}roll":
-        keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
-        
-        start = 1;
-        end = 6;
-        
-        if 'from' in keyed_args:
-            try:
-                start = int(keyed_args['from'])
-                if start < 0:
-                    raise ValueError("range must start from a non-negative integer")
-                    start = 1
-            except ValueError:
-                start = 1
-                await message.channel.send(f"Invalid input for 'from': {keyed_args['from']}. Using default = {start}")
-        if 'to' in keyed_args:
-            try:
-                end = int(keyed_args['to'])
-                if end < 0:
-                    raise ValueError("range must end with a non-negative integer")
-                    end = 6
-            except ValueError:
-                end = 6
-                await message.channel.send(f"Invalid input for 'to': {keyed_args['to']}. Using default = {end}")
-
-        num = random.randrange(start,end,1)
-        await message.channel.send(f"```{num}```")
-        return        
-                      
-    
-#    if cID == 1:
-#        
-#        comL ="```\n"
-#        for i in commandList:
-#            comL = comL + str(i) +"\n"  
-#        comL = comL + "\n```"
-#       
-#        await message.channel.send(comL)
-#        return
-#
-#    if cID == 2:
-#        
-#        code ="```cpp\n" + str(message.content).replace(str(commandList[2]),'') + "\n```"
-#        code = code.strip()
-#        await message.delete()
-#        await message.channel.send(code)
-#        return
-#
-#    if cID == 3:
-#        
-#        code ="```java\n" +str(message.content).replace(str(commandList[3]),'') +"\n```"
-#        code = code.strip()
-#        await message.delete()
-#        await message.channel.send(code)
-#        return
-#
-#    if cID == 4:
-#
-#        input_text = (message.content).replace(str(commandList[4]),'')
-#        selected_font = defualt_font
-#
-#        for FOND in ascii_art_fonts:
-#            if ('$'+str(FOND)) in input_text:
-#                input_text = input_text.replace(('$'+str(FOND)),'')
-#                selected_font = str(FOND)
-#                break
-#        
-#        input_text = input_text.strip()
-#        ascii_text = pyfiglet.figlet_format(input_text,font=selected_font)
-#        await message.delete()
-#        await message.channel.send("```"+ascii_text+"```")
-#        return
-#
-#    if cID == 5:
-#        
-#        fontL ="```\n"
-#        for FOND in ascii_art_fonts:
-#            if(len(fontL) >= 1980):
-#                await message.channel.send(fontL+"\n```")
-#                fontL = "```\n"
-#            fontL = fontL + str(FOND) + "\n"
-#        fontL = fontL + "\n```"
-#        await message.channel.send(fontL)
-#    if cID == 6:
-#        
-#        input_text = message.content.replace(str(commandList[6]),'').strip()
-#        
-#        if ('$d') in input_text:
-#            input_text = input_text.replace('$d','')
-#            elements = input_text.split(',')
-#            elements = [int(element) for element in elements]
-#            elements.sort(reverse=True);
-#            await message.delete()
-#            await message.channel.send("```\n"+str(elements)+"\n```")
-#            return
-#        if ('$a') in input_text:
-#            input_text = input_text.replace('$a','')
-#            elements = input_text.split(',')
-#            elements = [int(element) for element in elements]
-#            elements.sort();
-#            await message.delete()
-#            await message.channel.send("```\n"+str(elements)+"\n```")
-#            return
-#        elements = input_text.split(',')
-#        elements = [int(element) for element in elements]
-#        elements.sort();
-#        await message.delete()
-#        await message.channel.send("```\n"+str(elements)+"\n```")
-#        return
-=======
     return
->>>>>>> ec180fd (restructured):Commands_core.py
