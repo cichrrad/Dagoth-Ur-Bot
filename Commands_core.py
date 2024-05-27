@@ -16,6 +16,7 @@ import shlex
 import random
 import requests
 from bs4 import BeautifulSoup
+from lark import Lark, Transformer, v_args
 
 # Core function
 async def callCommand(message, prefix):
@@ -240,7 +241,7 @@ async def command_morrowgen(args, message,commandList):
     out = "```\n"
     out = out + f"Race: {chosen_race}\n\n"
     out = out + f"Sex: {chosen_sex}\n\n"
-    out = out + f"Name: WIP (see \"https://modding-openmw.com/name-generator/\" for now)\n\n"
+    out = out + f"Name: (see \"https://modding-openmw.com/name-generator/\" for now)\n\n"
     out = out + f"Specialization: {chosen_specialization}\n\n"
     out = out + f"Favored Attributes: {chosen_favored_attributes}\n\n"
     out = out + f"Major Skills: {chosen_major_skills}\n\n"
