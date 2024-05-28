@@ -17,6 +17,7 @@ import random
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import grammar
 
 
 # Core function
@@ -214,7 +215,7 @@ async def command_roll(args, message,commandList):
     await message.channel.send(f"```\n{rolls}==========================\nAverage value = {str(avg)}\n==========================```")
 
 async def command_morrowgen(args, message,commandList):
-    race_list = ["Argonian", "Breton", "Dark Elf", "High Elf", "Imperial", "Khajiit", "Nord", "Orc", "Redguard", "Wood Elf"]
+    race_list = ["Argonian", "Breton", "Dunmer", "Altmer", "Imperial", "Khajiit", "Nord", "Orc", "Redguard", "Bosmer"]
     specialization_list = ["Combat", "Magic", "Stealth"]
     favored_attributes_list = ["Strength", "Intelligence", "Willpower", "Agility", "Speed", "Endurance", "Personality", "Luck"]
     birthsign_list = ["The Apprentice", "The Atronach", "The Lady", "The Lord", "The Lover", "The Mage", "The Ritual", "The Serpent", "The Shadow", "The Steed", "The Thief", "The Tower", "The Warrior"]
@@ -239,15 +240,30 @@ async def command_morrowgen(args, message,commandList):
     # Choose 1 birthsign
     chosen_birthsign = random.choice(birthsign_list)
 
-    name_list = pd.read_csv('morrowgen.names')
-    chosen_name='None'
-    filtered_data = name_list[(name_list['race'] == chosen_race) & (name_list['gender'] == chosen_sex.lower())]
-    first_name = filtered_data.sample(n=1).iloc[0]['name']
-    if random.choice([True, False]):
-        last_name = filtered_data.sample(n=1).iloc[0]['name']
-        chosen_name = f"{first_name} {last_name}"
+    g = grammar.Grammar('grammar.gr')
+    g.parseGrammar()
+    chosen_name = 'none'
+    if chosen_race == 'Dunmer':
+        #sometimes take ashlander name
+        if random.choice([True, False]):
+            chosen_race = "Dunmer - Ashlander"
+            nonT = g.find_nonterminal(chosen_sex.lower(),'ashlander')
+            chosen_name=g.expand_nonterminal(nonT)
+        else:
+            nonT = g.find_nonterminal(chosen_sex.lower(),chosen_race.lower())
+            chosen_name=g.expand_nonterminal(nonT)
     else:
-        chosen_name = first_name
+        nonT = g.find_nonterminal(chosen_sex.lower(),chosen_race.lower())
+        chosen_name=g.expand_nonterminal(nonT)
+    
+    #name_list = pd.read_csv('morrowgen.names')
+    #filtered_data = name_list[(name_list['race'] == chosen_race) & (name_list['gender'] == chosen_sex.lower())]
+    #first_name = filtered_data.sample(n=1).iloc[0]['name']
+    #if random.choice([True, False]):
+    #    last_name = filtered_data.sample(n=1).iloc[0]['name']
+    #    chosen_name = f"{first_name} {last_name}"
+    #else:
+    #    chosen_name = first_name
 
     out = "```\n"
     out = out + f"Race: {chosen_race}\n\n"

@@ -1,0 +1,577 @@
+
+<ter_female_altmer_first_name> ::=
+    "Anirne" | "Ardarume" | "Calmaninde" | "Camandil" | "Celria" | "Ciralinde" | "Culumaire" |
+    "Cumanya" | "Dhaunayne" | "Elanande" | "Elante" | "Eldafire" | "Elenwen" | "Erissare" | "Erranil" |
+    "Estalenya" | "Estirdalin" | "Estoril" | "Faire" | "Fistelle" | "Helende" | "Hession" | 
+    "Iirenoore" | "Imare" | "Iniel" | "Irinwe" | "Lorurmend" | "Mirkrand" | "Nalcarya" | "Siltalaure" |
+    "Sirilonwe" | "Sondaale" | "Taarie" | "Tarerane" | "Tenyeminwe" | "Termanwe" | "Viraninde" ;
+
+<ter_male_altmer_first_name> ::=
+    "Aldaril" | "Anarenen" | "Andil" | "Angoril" | "Armion" | "Aronil" | "Arrille" | "Athellor" |
+    "Carecalmo" | "Caryarel" | "Earmil" | "Eraamion" | "Erundil" | "Fainertil" | "Falanaamo" | "Fanildil" |
+    "Fiiriel" | "Gladroon" | "Hecerinde" | "Hyarnarenquar" | "Ilmiril" | "Inganar" | "Iroroon" | "Itermerel" |
+    "Kardryn" | "Landorume" | "Meanen" | "Meryaran" | "Mollimo" | "Moranarg" | "Mororurg" | "Mossanon" |
+    "Nande" | "Nelacar" | "Norionil" | "Olquar" | "Qorwynn" | "Rimintil" | "Rumare" | "Sanyon" | "Seanwen" |
+    "Sinyaramen" | "Sorcalin" | "Tauryon" | "Telinturco" | "Tragrim" | "Tunengore" | "Tusamircil" |
+    "Tyermaillin" | "Umbacano" | "Undil" | "Uulernil" | "Volanaro" | "Yakov" | "Yanniss" | "Yarnar" ;
+
+<ter_altmer_surname> ::= "" ;
+
+<nter_female_altmer_name> ::= <ter_female_altmer_first_name>;
+<nter_male_altmer_name> ::= <ter_male_altmer_first_name>;
+
+<start_altmer_name> ::= <nter_female_altmer_name> | <nter_male_altmer_name> ;
+
+<ter_female_argonian_first_name_jel> ::=
+    "Ahaht" | "Akish" | "Banalz" | "Beekatan" | "Eutei" | "Gilm" | "Gish" | "Hul" | "Kasa" | "Milah" | "Nakuma" |
+    "Neesha" | "Nuralg" | "Nush" | "Okur" | "Onasha" | "Shatalg" | "Tasha" | "Wusha" | "Ah-Meesei" | "Am-Ra" |
+    "An-Deesei" | "Chanil-Lee" | "Cheesh-Meeus" | "Deesh-Meeus" | "El-Lurasha" | "Ereel-Lei" | "Gih-Ja" | "Jeed-Ei" |
+    "Kal-Ma" | "Keel-Raniur" | "Meeh-Mei" | "Meen-Sa" | "Mim-Jeen" | "Muz-Ra" | "Nam-La" | "Olank-Neeus" | "On-Wan" |
+    "On-Wazei" | "Seen-Rei" ;
+
+<ter_female_argonian_first_name_imperial> ::= "Breech-Star" | "Snail-Tail" | "Tern-Feather" | "Travelling-New-Woman" ;
+
+<ter_male_argonian_first_name_jel> ::=
+    "Asum" | "Bunish" | "Busheeus" | "Chalureel" | "Chiwish" | "Chulz" | "Chuna" | "Haran" | "Hathei" | "Heedul" |
+    "Huleeya" | "Huzei" | "Inee" | "Itan" | "Meer" | "Milos" | "Neetinei" | "Okaw" | "Peeradeeh" | "Rasha" |
+    "Reemukeeus" | "Reesa" | "Seewul" | "Skeetul" | "Tanan" | "Teegla" | "Tul" | "Ukawei" | "Ula" |
+    "Utadeek" | "Weeltul" | "Weer" | "An-Zaw" | "Bun-Teemeeta" | "Dan-Ru" | "Effe-Tei" | "Eleedal-Lei" | "Gah Julan" |
+    "Gam-Kur" | "Geel-Lah" | "Haj-Ei" | "Han-Tulm" | "Heem-La" | "Heir-Zish" | "Im-Kilaya" | "Jeelus-Tei" |
+    "Jeer-Maht" | "J'Ram-Dar" | "Junal-Lei" | "Keerasa-Tan" | "Miun-Gei" | "Mush-Mere" | "Okan-Shei" | "Oleen-Gei" |
+    "Olink-Nur" | "Reeh-Jah" | "Silm-Dar" | "Tee-Lan" | "Tim-Jush" | "Vistha-Kai" | "Wanan-Dum" | "Wih-Eius" |
+    "Wud-Neeus" | "Wuleen-Shei" ;
+
+<ter_male_argonian_first_name_imperial> ::=
+    "Also-He-Washes" | "Basks-In-The-Sun" | "Big Head" | "Dreaded-Water" | "Fine-Mouth" | "Grey-Throat" |
+    "Hides-His-Eyes" | "Hides-His-Foot" | "High-Heart" | "Morning-Star-Steals-Away-Clouds" | "Nelix Fly-Breath" |
+    "Nine-Toes" | "Only-He-Stands-There" | "Skink-in-Tree's-Shade" | "Smart-Snake" | "Smokeskin-Killer" |
+    "Stream-Murk" | "Swims-In-Swells" | "Ten-Tongues Weerhat" | "Tongue-Toad" | "Twice-Bitten" | "Wind-In-His-Hair" ;
+
+<ter_argonian_surname> ::= "" ;
+
+<nter_female_argonian_name> ::= <ter_female_argonian_first_name_imperial> ;
+<nter_male_argonian_name> ::= <ter_male_argonian_first_name_imperial> ;
+
+<start_argonian_name> ::= <nter_female_argonian_name> | <nter_male_argonian_name> ;
+
+<ter_female_bosmer_first_name> ::=
+    "Aerin" | "Aglaril" | "Anrel" | "Aradraen" | "Arangaer" | "Aranwen" | "Ardhil" | "Aredhel" | "Bauril" |
+    "Baurin" | "Belwen" | "Berwen" | "Borwen" | "Celegil" | "Cirwedh" | "Cuunel" | "Distel" | "Dondreth" | "Dothiel" |
+    "Dothruviel" | "Eindel" | "Elegnan" | "Elphiron" | "Emelin" | "Eraldil" | "Estinan" | "Falion" | "Fara" |
+    "Filbeneth" | "Galbedir" | "Galdiir" | "Gelduin" | "Gildan" | "Giningil" | "Glathel" | "Hyna" | "Iingail" | "Indrel" |
+    "Irwaen" | "Kirsty" | "Liette" | "Lorchel" | "Mara" | "Menelin" | "Milbereth" | "Nael" | "Natesse" | "Nathien" |
+    "Nilioniel" | "Nona" | "Penglithil" | "Radras" | "Samia" | "Thaeril" ;
+
+<ter_male_bosmer_first_name> ::=
+    "Aengoth" | "Agarond" | "Allimir" | "Alveleg" | "Amring" | "Anglalos" | "Anruin" | "Arannir" | "Arathor" | 
+    "Baradras" | "Berengeval" | "Bolrin" | "Bragor" | "Brallion" | "Brithroth" | "Brolmir" | "Celegorn" | "Cingor" |
+    "Clendil" | "Cun" | "Dangor" | "Denegor" | "Dirding" | "Dondir" | "Elberoth" | "Elegal" | "Eloroth" | "Endring" |
+    "Engaer" | "Eradan" | "Erradan" | "Erval" | "Faldan" | "Fargoth" | "Faulgor" | "Fillin" | "Findulain" | "Foronir" |
+    "Gaeldol" | "Gaenor" | "Galmir" | "Galthragoth" | "Gazalem" | "Gerrilgor" | "Glaum" | "Glonagoth" | "Godros" | 
+    "Gorchalas" | "Hingor" | "Meldor" | "Menelras" | "Minedhel" | "Minglos" | "Monthadan" | "Morth" | "Nalion" |
+    "Nedhelas" | "Nedhelorn" | "Pegasai" | "Peragon" | "Rithrannir" | "Tarhiel" | "Thoromlallor" | "Thoronor" |
+    "Tuundir" | "Ulwaen" | "Ungeleb" ;
+
+<ter_bosmer_surname> ::= "" ;
+
+<nter_female_bosmer_name> ::= <ter_female_bosmer_first_name>;
+<nter_male_bosmer_name> ::= <ter_male_bosmer_first_name>;
+
+<start_bosmer_name> ::= <nter_female_bosmer_name> | <nter_male_bosmer_name> ;
+
+<ter_female_breton_first_name> ::=
+    "Abelle" | "Aditte" | "Ales" | "Ama" | "Amarie" | "Arbene" | "Arielle" | "Asciene" | "Aurane" | "Aurnie" |
+    "Belene" | "Bovkinna" | "Cienne" | "Dabienne" | "Darene" | "Derelle" | "Edre" | "Edwinna" | "Emusette" | "Fasele" |
+    "Fasile" | "Frelene" | "Gulitte" | "Helviane" | "Heniele" | "Janand" | "Jeanne" | "Jeberilie" | "Joslin" |
+    "Leles" | "Lielle" | "Lirielle" | "Mabrelle" | "Malielle" | "Maline" | "Maranique" | "Marelle" | "Marielle" |
+    "Marthe" | "Masalinie" | "Maurrie" | "Melie" | "Milie" | "Mitanne" | "Muriel" | "Pierlette" | "Piernette" |
+    "Relie" | "Rianciene" | "Ronerelie" | "Sosia" | "Surane" | "Synette" | "Vienne" | "Virene" ;
+
+<ter_male_breton_first_name> ::=
+    "Alodie" | "Andre" | "Arnand" | "Astien" | "Barnand" | "Bereditte" | "Birard" | "Ciel" | "Cirges" | "Danders" |
+    "Daric" | "Debentien" | "Dilborn" | "Elbert" | "Ernand" | "Ernard" | "Faric" | "Fenas" | "Ferarilie" |
+    "Francois" | "Frizkav" | "Frostien" | "Gaban" | "Geon" | "Geor" | "Idhdean" | "Inwold" | "Irbran" | "Jadier" |
+    "Jeanciele" | "Jerian" | "Jocien" | "Joncis" | "Juillen" | "Lanie" | "Listien" | "Louis" | "Manis" | "Marcel" |
+    "Mebestien" | "Merard" | "Merthierry" | "Myn" | "Noleon" | "Ormax" | "Orrent" | "Paur" | "Perien" | "Phane" |
+    "Relien" | "Rerlas" | "Roberto" | "Ruran" | "Simine" | "Socucius" | "Thetrard" | "Varnis" | "Verick" | "Ylbert" ;
+
+<ter_breton_surname> ::=
+    "Acques" | "Adrard" | "Adrognese" | "Amedee" | "Ancois" | "Andre" | "Arthe" | "Auline" | "Aurelie" | "Aurilie" |
+    "Aurmine" | "Beauchamp" | "Beluelle" | "Bielle" | "Bienne" | "Bierles" | "Birian" | "Bracques" | "Broles" |
+    "Brutya" | "Caria" | "Caristiana" | "Charascel" | "Charien" | "Chriditte" | "Cienne" | "Dalomax" | "Desele" |
+    "Dolbanitte" | "Elbert" | "Ence" | "Endre" | "Ephine" | "Erelie" | "Ergalla" | "Farr" | "Fralinie" | "Frenck" |
+    "Frernis" | "Gemain" | "Genis" | "Geontene" | "Gernis" | "Geves" | "Gilelle" | "Hastien" | "Jastal" | "Jeannie" |
+    "Jeline" | "Jes" | "Jodoin" | "Jolvanne" | "Julalanie" | "Kirbatha" | "Laelippe" | "Leoriane" | "Limax" | "Liric" |
+    "Macile" | "Madach" | "Mannick" | "Marquardt" | "Masolaude" | "Masoriane" | "Masto" | "Matreinace" | "Maul" |
+    "Maulinie" | "Maurard" | "Mene" | "Merian" | "Meric" | "Milielle" | "Mon" | "Moniel" | "Mornardl" | "Nermarc" |
+    "Nestal" | "Nin" | "Oges" | "Panoit" | "Phiencel" | "Philulanie" | "Phirrienele" | "Rane" | "Retene" | "Rielle" |
+    "Rirne" | "Riscel" | "Rolston" | "Rostorard" | "Sele" | "Sette" | "Sintieve" | "Stieve" | "Sylbenitte" | "Tailas" |
+    "Thierry" | "Vanne" | "Vette" | "Viralaine" | "Virmaulese" | "Ysciele" | "Yvienne" | "Geles" | "Stoine" ;
+
+<nter_female_breton_name> ::= <ter_female_breton_first_name> <ter_breton_surname> ;
+<nter_male_breton_name> ::= <ter_male_breton_first_name> <ter_breton_surname> ;
+
+<start_breton_name> ::= <nter_female_breton_name> | <nter_male_breton_name> ;
+
+<ter_female_dunmer_first_name> ::=
+    "Mehra" | "Daynasa" | "Daynila" | "Felara" | "Galsa" | "Mivanu" | "Thelama" | "Velsa" | "Veresa" |
+    "Adrusu" | "Alarvyne" | "Alavesa" | "Aldyne" | "Alenus" | "Aleri" | "Almse" | "Almsi" |
+    "Aloie" | "Alonisea" | "Alurue" | "Alvela" | "Alveno" | "Alvura" | "Alynu" | "Amili" | "Andalin" | "Andilo" |
+    "Andilu" | "Ane" | "Angahran" | "Anis" | "Anise" | "Aralosea" | "Arara" | "Arns" | "Arnsa" | "Arnsi" | "Artisa" |
+    "Arvama" | "Arvamea" | "Arvela" | "Arvso" | "Aryne" | "Aryni" | "Athesie" | "Avoni" | "Badala" | "Badama" |
+    "Balen" | "Baleni" | "Balsa" | "Balynu" | "Bedenea" | "Bedynea" | "Beleru" | "Bevene" |
+    "Bidsi" | "Bilsa" | "Birama" | "Bivale" | "Boderi" | "Bodsa" | "Boldrisa" | "Bralsea" | "Brara" | "Bravora" |
+    "Bredasu" | "Brelayne" | "Brelda" | "Brelyna" | "Brerayne" | "Brevasu" | "Brevosi" | "Brildraso" | "Brilnosu" |
+    "Bronosa" | "Dalami" | "Dalnorea" | "Dalse" | "Dalyne" | "Danaronea" | "Danasi" | "Dandera" | "Dandynea" |
+    "Danoso" | "Danso" | "Darane" | "Dareru" | "Daroso" | "Darvala" | "Darvame" | "Darvasa" | "Darvynea" |
+    "Daynali" | "Daynas" | "Daynillo" | "Deldasa" | "Deldrise" | "Delmene" | "Delyna" | "Derar" | "Derayna" |
+    "Dilami" | "Dileno" | "Dilvene" | "Dinara" | "Dinere" | "Dinuro" | "Diradeni" | "Dirara" | "Diren" | "Dolmesa" |
+    "Dolsa" | "Dolvasie" | "Domesea" | "Dorisa" | "Dorynu" | "Dothasi" | "Dovrosi" | "Dralasa" | "Dralcea" |
+    "Dralisi" | "Dralora" | "Dralosa" | "Dralsea" | "Draramu" | "Drarayne" | "Dratha" | "Dravynea" | "Dredyni" |
+    "Drelasa" | "Drelyne" | "Drendrisa" | "Dreveni" | "Drilame" | "Driloru" | "Drireri" | "Drolora" | "Drorayni" |
+    "Drulene" | "Drurile" | "Duldresi" | "Dulnea" | "Edryno" | "Eldrasea" | "Eldrilu" | "Elmera" | "Elmussa" |
+    "Elvasea" | "Elynea" | "Elynu" | "Endase" | "Endroni" | "Eralane" | "Erirvase" | "Ernse" | "Ervesa" | "Ervona" |
+    "Ervyna" | "Ethal" | "Ethasi" | "Evesa" | "Evilu" | "Fadase" | "Fadile" | "Falanu" | "Falena" | "Falura" |
+    "Fanasa" | "Fanisea" | "Fanuse" | "Faral" | "Faralenu" | "Farare" | "Faras" | "Farena" | "Farusea" | "Fathasa" |
+    "Fathusa" | "Favani" | "Favela" | "Favilea" | "Favise" | "Favona" | "Fedura" | "Feldrelo" | "Felisa" | "Felmena" |
+    "Felsa" | "Felsu" | "Feralea" | "Ferise" | "Ferone" | "Fervsea" | "Ferynu" | "Fevasa" | "Fevila" | "Fieryra" |
+    "Folsi" | "Folvalie" | "Fomesa" | "Fonari" | "Fonas" | "Forvse" | "Gadasu" | "Gadela" | "Gadyni" | "Galas" |
+    "Galasa" | "Galdal" | "Galeri" | "Galero" | "Galore" | "Galsu" | "Galuro" | "Galvene" | "Galviso" | "Galyn" |
+    "Gandela" | "Gandosa" | "Garalo" | "Garas" | "Garila" | "Garyne" | "Gilse" | "Ginadura" | "Gindrala" | "Girara" |
+    "Girvani" | "Girynu" | "Golana" | "Golena" | "Golmerea" | "Golveso" | "Golvyni" | "Gomeso" | "Gorenea" | "Gorven" |
+    "Guldrise" | "Gulena" | "Gulvilie" | "Gureryne" | "Haleneri" | "Hlavora" | "Hlendrisa" | "Hlevala" | "Hlireni" |
+    "Hlodala" | "Idrenie" | "Idronea" | "Idroso" | "Idula" | "Ienasa" | "Ienase" | "Ienaso" | "Ilmeni" | "Ilmyna" |
+    "Indrele" | "Inera" | "Irna" | "Irvama" | "Irvsie" | "Ivela" | "Iveri" | "Ivramie" | "Ivrosa" | "Lauravenya" |
+    "Llaalamu" | "Llaalsa" | "Llandrale" | "Llandreri" | "Llarara" | "Llaros" | "Llarusea" | "Llathise" | "Llathyno" |
+    "Llavane" | "Llavelea" | "Llavesa" | "Llaynasa" | "Lledsa" | "Lledsea" | "Llemisa" | "Llerusa" | "Llevana" |
+    "Llirala" | "Llivas" | "Llondresa" | "Llorayna" | "Llunela" | "Madayna" | "Madaynu" | "Madrale" | "Madura" |
+    "Malsa" | "Malven" | "Manara" | "Manse" | "Manwe" | "Maralie" | "Marasa" | "Maren" | "Marena" | "Marilia" |
+    "Mathesa" | "Medila" | "Medresi" | "Melsu" | "Meluria" | "Melvona" | "Melvuli" | "Melvure" | "Meralyn" |
+    "Methulu" | "Mevrenea" | "Mevure" | "Miara" | "Milara" | "Miluru" | "Milvela" | "Milvonu" | "Minasi" | "Mindeli" |
+    "Miraso" | "Mirnelea" | "Mornsu" | "Moroni" | "Morusu" | "Movisa" | "Muldroni" | "Mulvisie" | "Mundrila" |
+    "Muvrulea" | "Nadene" | "Nalami" | "Nalasa" | "Nalmila" | "Nalsie" | "Nalvilie" | "Nalvyna" | "Narese" |
+    "Narile" | "Narisa" | "Nartise" | "Nathala" | "Nathyne" | "Nedeni" | "Nelmyne" | "Nelso" | "Nerile" | "Nervana" |
+    "Nevama" | "Nevena" | "Nevrasa" | "Nevrila" | "Nevusa" | "Nidara" | "Nidryne" | "Nileno" | "Nilera" | "Nilvyn" |
+    "Nina" | "Nirasa" | "Nireli" | "Noldrasi" | "Nothasea" | "Novrynea" | "Nuleno" | "Nurisea" | "Olvyne" | "Omesu" |
+    "Orero" | "Orvona" | "Radene" | "Raldenu" | "Ranis" | "Ranosa" | "Rarusu" | "Rarvela" | "Rathyne" | "Ravani" |
+    "Raven" | "Ravoso" | "Rayna" | "Raynasa" | "Raynila" | "Relamu" | "Relmerea" | "Relosa" | "Relvese" | "Remasa" |
+    "Rerilie" | "Rerynea" | "Reynel" | "Ridena" | "Rilasi" | "Rilvase" | "Rinori" | "Riraynea" | "Rolasa" |
+    "Runethyne" | "Ruthrisu" | "Ruvene" | "Sadal" | "Sadela" | "Salama" | "Salora" | "Salyni" | "Sanaso" | "Saruse" |
+    "Sathasa" | "Satheri" | "Satyana" | "Savesea" | "Savile" | "Sedris" | "Sedyni" | "Selvura" | "Senise" | "Serila" |
+    "Sernsi" | "Seryne" | "Sethesi" | "Sevame" | "Sevisa" | "Sevyni" | "Sodrara" | "Sondryn" | "Sorosi" | "Sovali" |
+    "Sovisa" | "Suldreni" | "Tadara" | "Tadera" | "Talamu" | "Talare" | "Talmeni" | "Talmsa" | "Talsi" | "Taluri" |
+    "Taluro" | "Tamira" | "Tanar" | "Tandasea" | "Tanisie" | "Tanusea" | "Tarani" | "Tavilu" | "Tavynu" | "Tedysa" |
+    "Teleri" | "Telura" | "Tenaru" | "Tenisi" | "Terenu" | "Tereri" | "Teril" | "Teruise" | "Teryne" | "Thalurea" |
+    "Thavere" | "Thelsa" | "Thelvamu" | "Therana" | "Thilse" | "Thovasi" | "Thurisea" | "Tilena" | "Tilore" | "Tinaso" |
+    "Tirasie" | "Tirele" | "Tolmera" | "Tolvise" | "Tolvone" | "Tonas" | "Tonasi" | "Toranu" | "Torasa" | "Torosi" |
+    "Traldrisa" | "Traynili" | "Tredere" | "Tremona" | "Trerayna" | "Trivura" | "Tumsa" | "Tunila" | "Tuvene" |
+    "Tuvenie" | "Tuveso" | "Ulenea" | "Uleni" | "Ulmesi" | "Ulmiso" | "Ulvena" | "Ulveni" | "Ulyne" | "Ulyno" |
+    "Unila" | "Urandile" | "Urene" | "Uresa" | "Ureso" | "Urtisa" | "Urtiso" | "Uryne" | "Uvisea" | "Uvoo" |
+    "Vadeni" | "Vadramea" | "Vadusa" | "Valveli" | "Valvesu" | "Valvosa" | "Valyne" | "Varasa" | "Varenu" | "Varona" |
+    "Varvsa" | "Vaveli" | "Vedelea" | "Velanda" | "Velyna" | "Venasa" | "Vendrela" | "Verara" | "Vevrana" | "Vilvyni" |
+    "Vindamea" | "Vindyne" | "Vireveri" | "Vivyne" | "Volene" | "Volmyni" | "Voneri" | "Vuldronu" | "Vulyne" ;
+
+<ter_male_dunmer_first_name> ::=
+    "Ano" | "Galos" | "Anes" | "Arns" | "Avon" | "Avus" | "Balen" | "Balis" | "Breyns" | "Daris" | "Direr" |
+    "Dranas" | "Draren" | "Drathas" | "Dravil" | "Dreyns" | "Enar" | "Eno" | "Ervis" | "Fedris" | "Fendel" |
+    "Gaden" | "Galar" | "Galtis" | "Gilas" | "Gils" | "Ienas" | "Llaalam" | "Llerar" | "Manos" | "Novor" |
+    "Ralen" | "Ralyn" | "Talis" | "Taren" | "Ulms" | "Vaval" | "Adaves" | "Adil" | "Adondasi" | "Adosi" |
+    "Adren" | "Alam" | "Alanil" | "Aldam" | "Alds" | "Alms" | "Alnas" | "Alvan" | "Alven" | "Alvis" | "Alvor" |
+    "Alvos" | "Alvur" | "Anas" | "Anden" | "Andril" | "Anel" | "Angaredhel" | "Aras" | "Arelvam" | "Aren" | "Arethan" |
+    "Arnas" | "Aroa" | "Aron" | "Arsyn" | "Arven" | "Arver" | "Arvs" | "Arvyn" | "Aryon" | "Athal" | "Athanden" |
+    "Athelyn" | "Ather" | "Athyn" | "Avron" | "Baladas" | "Balver" | "Balyn" | "Banden" | "Banor" | "Baren" |
+    "Barusi" | "Bedal" | "Belas" | "Beldrose" | "Belos" | "Bels" | "Belvis" | "Benar" | "Beraren" | "Berel" |
+    "Berela" | "Bertis" | "Bervaso" | "Bervyn" | "Bethes" | "Bevadar" | "Bildren" | "Bilen" | "Bilos" | "Birer" |
+    "Bolayn" | "Boler" | "Bolnor" | "Bols" | "Bolvus" | "Bolvyn" | "Bolyn" | "Boryn" | "Bradil" | "Bralas" | "Bralen" |
+    "Bralis" | "Bralyn" | "Brarayni" | "Bratheru" | "Brathus" | "Bravosi" | "Braynas" | "Brelar" | "Brelo" | "Brelyn" |
+    "Brerama" | "Brethas" | "Breves" | "Breynis" | "Briras" | "Broder" | "Broris" | "Brothes" | "Dalam" | "Daldur" |
+    "Dalin" | "Dalmil" | "Dalos" | "Dals" | "Dalvus" | "Danar" | "Dandras" | "Danel" | "Daral" | "Daras" | "Daren" |
+    "Darns" | "Daroder" | "Dartis" | "Darvam" | "Daryn" | "Dather" | "Dathus" | "Davas" | "Davis" | "Davur" |
+    "Daynes" | "Daynil" | "Dedaenc" | "Delmon" | "Delmus" | "Delvam" | "Deras" | "Dethresa" | "Deval" | "Devas" |
+    "Dils" | "Dinor" | "Dirver" | "Divayth" | "Dolmyn" | "Dolyn" | "Dondos" | "Donus" | "Dovor" | "Dovres" | "Dralas" |
+    "Drals" | "Dralval" | "Dram" | "Dramis" | "Drandryn" | "Dranos" | "Drarayne" | "Drarel" | "Draron" | "Drarus" |
+    "Draryn" | "Drathyn" | "Dravasa" | "Dredase" | "Drelayn" | "Drelis" | "Drelse" | "Drerel" | "Dreynis" | "Dreynos" |
+    "Dridas" | "Dridyn" | "Drinar" | "Drodos" | "Dronos" | "Drores" | "Drulvan" | "Duldrar" | "Dunel" | "Edd" |
+    "Edras" | "Edril" | "Elam" | "Eldil" | "Eldrar" | "Elethus" | "Elms" | "Elo" | "Elvas" | "Elvil" | "Endar" | 
+    "Endris" | "Endryn" | "Endul" | "Erene" | "Erer" | "Ereven" | "Eris" | "Ernil" | "Erns" | "Ervas" | "Ethes" |
+    "Ethys" | "Evo" | "Evos" | "Fadren" | "Falam" | "Falso" | "Falvel" | "Falvis" | "Farvam" | "Farvyn" | "Favas" |
+    "Favel" | "Faven" | "Faver" | "Faves" | "Fedar" | "Felayn" | "Felen" | "Felisi" | "Felsen" | "Felvan" | "Felvos" |
+    "Femer" | "Fendros" | "Fendryn" | "Feranos" | "Ferele" | "Feril" | "Feruren" | "Fervas" | "Fevris" | "Fevus" |
+    "Fevyn" | "Folms" | "Folvys" | "Folyni" | "Fons" | "Fonus" | "Forven" | "Foryn" | "Fothas" | "Fothyna" | "Foves" |
+    "Fovus" | "Gadayn" | "Gaelion" | "Galam" | "Galdres" | "Galen" | "Galis" | "Galmis" | "Galms" | "Gals" | "Gamin" |
+    "Ganalyn" | "Ganus" | "Garer" | "Garisa" | "Garnas" | "Garvs" | "Garyn" | "Gathal" | "Gavas" | "Gavesu" | "Gavis" |
+    "Gidar" | "Giden" | "Gilan" | "Gilmyn" | "Gilur" | "Gilvas" | "Gilyan" | "Gilyn" | "Gilyne" | "Gindas" | "Ginur" |
+    "Giras" | "Giren" | "Giron" | "Giryn" | "Golar" | "Goldyn" | "Goler" | "Gols" | "Golven" | "Goras" | "Gordol" |
+    "Goren" | "Goris" | "Goron" | "Gothren" | "Goval" | "Gragus" | "Gulmon" | "Guls" | "Guril" | "Hlaren" |
+    "Hlaroi" | "Hlenil" | "Hleras" | "Hloris" | "Hort" | "Idros" | "Ildos" | "Ilen" | "Ilet" | "Ilver" | "Iner" |
+    "Irer" | "Irver" | "Ivulen" | "Jiub" | "Llaals" | "Llanas" | "Llandras" | "Llandris" | "Llanel" | "Llarar" |
+    "Llarel" | "Llaren" | "Llaro" | "Llavam" | "Lleran" | "Lleras" | "Lleris" | "Llero" | "Llether" | "Llevas" |
+    "Llevel" | "Lliram" | "Lliros" | "Lliryn" | "Lloden" | "Llonas" | "Llondryn" | "Lloros" | "Llovyn" | "Madran" |
+    "Madres" | "Madsu" | "Malar" | "Mallam" | "Mals" | "Manabi" | "Mandran" | "Mandur" | "Mandyn" | "Manel" | "Maner" |
+    "Manolos" | "Marayn" | "Maros" | "Mastrius" | "Mathis" | "Mathyn" | "Mavis" | "Mavon" | "Mavus" | "Meder" | "Medyn" |
+    "Melar" | "Melur" | "Menus" | "Meril" | "Mertis" | "Mertisi" | "Mervis" | "Mervs" | "Meryn" | "Methal" | "Methas" |
+    "Mevel" | "Meven" | "Mevil" | "Midar" | "Milar" | "Mils" | "Milyn" | "Miner" | "Miron" | "Mirvon" | "Mivul" |
+    "Mondros" | "Movis" | "Muvis" | "Nads" | "Nalis" | "Nalmen" | "Nalosi" | "Nals" | "Nalur" | "Naral" | "Naris" |
+    "Nathyn" | "Navam" | "Navil" | "Neldris" | "Nelmil" | "Nelos" | "Neloth" | "Nels" | "Nelvon" | "Nelyn" | "Nerer" |
+    "Nethyn" | "Nevil" | "Nevon" | "Nevos" | "Nevosi" | "Niden" | "Nilas" | "Nilos" | "Niras" | "Nivel" | "Nivos" |
+    "Norus" | "Odral" | "Odron" | "Oisig" | "Ondar" | "Ondres" | "Orns" | "Orval" | "Orvas" | "Ovis" | "Ralam" |
+    "Ralds" | "Ralmyn" | "Ralos" | "Ranes" | "Ranor" | "Rararyn" | "Raril" | "Raryn" | "Rathal" | "Raviso" | "Ravos" |
+    "Raynilie" | "Relam" | "Relas" | "Relen" | "Relms" | "Rels" | "Relur" | "Relyn" | "Remas" | "Rernel" | "Reron" |
+    "Rervam" | "Reynis" | "Rilas" | "Rilos" | "Rilver" | "Rindral" | "Rirnas" | "Rirns" | "Rivame" | "Rolis" | "Rols" |
+    "Roner" | "Rothis" | "Rovone" | "Sadas" | "Sadryn" | "Salas" | "Salen" | "Salvas" | "Salver" | "Salyn" | "Sanvyn" |
+    "Saras" | "Sarayn" | "Sarvil" | "Sarvur" | "Saryn" | "Sathas" | "Savor" | "Savure" | "Sedam" | "Sedrane" |
+    "Seldus" | "Seler" | "Selman" | "Selmen" | "Selvil" | "Sendel" | "Sendus" | "Seras" | "Serer" | "Serul" | "Seryn" |
+    "Sevilo" | "Shashev" | "Sodres" | "Sortis" | "Sovor" | "Stlennius" | "Sulen" | "Sulis" | "Sunel" | "Sur" |
+    "Suryn" | "Suvryn" | "Svadstar" | "Tadas" | "Talms" | "Tandram" | "Tanel" | "Tanur" | "Tarar" | "Tarer" | "Taros" |
+    "Tarvus" | "Tarvyn" | "Taves" | "Tedril" | "Tedryn" | "Tedur" | "Telis" | "Tels" | "Telvon" | "Temis" | "Tendren" |
+    "Tendris" | "Tens" | "Terer" | "Teres" | "Teris" | "Tervur" | "Tevyn" | "Thadar" | "Thaden" | "Thanelen" |
+    "Tharer" | "Thauraver" | "Theldyn" | "Thervam" | "Tholer" | "Thoryn" | "Threvul" | "Tidras" | "Tidros" | "Tinos" |
+    "Tiram" | "Tiras" | "Tirer" | "Tirnur" | "Tirvel" | "Tivam" | "Toris" | "Tralas" | "Tralayn" | "Traven" |
+    "Tredyn" | "Trelam" | "Trels" | "Trendrus" | "Treram" | "Treras" | "Trevyn" | "Trilam" | "Trivon" | "Tuls" |
+    "Ultis" | "Ulves" | "Ulvil" | "Ulvon" | "Unel" | "Uradras" | "Ureval" | "Urnel" | "Urvel" | "Urven" | "Uryn" |
+    "Uthrel" | "Uvele" | "Uvren" | "Vaden" | "Vanel" | "Vares" | "Varis" | "Varon" | "Varvur" | "Vatollia" | "Vaves" |
+    "Vavran" | "Vedam" | "Vedran" | "Velis" | "Velms" | "Velyn" | "Veros" | "Vevos" | "Vevul" | "Vilval" | "Vilyn" |
+    "Viras" | "Virvyn" | "Vobend" | "Vonden" | "Vonos" | "Vorar" | "Voruse" | "Vuvil" ;
+
+<ter_dunmer_surname> ::=
+    "Andrano" | "Andrethi" | "Ienith" | "Hlaalu" | "Arvel" | "Dralor" | "Llervu" | "Sadri" | "Saren" | "Andas" |
+    "Dren" | "Faryon" | "Girith" | "Hleran" | "Indaram" | "Aryon" | "Indaren" | "Indrano" | "Sarano" | "Seran" |
+    "Andarys" | "Andus" | "Arenim" | "Athren" | "Farano" | "Fyr" | "Gilnith" | "Hlaren" | "LLethri" | "Maryon" |
+    "Omayn" | "Relas" | "Salas" | "Saryon" | "Umayn" | "Vendu" | "Andaram" | "Aralas" | "Arelas" | "Arobar" |
+    "Helas" | "Hlervu" | "Llaren" | "Lleran" | "Maren" | "Nerethi" | "Omoran" | "Oran" | "Othravel" |"Othril" |
+    "Rathryon" | "Rethan" | "Retheran" | "Salvani" | "Saram" | "Sarethi" | "Seloth" | "Senim" | "Teran" | "Tharen" |
+    "Ules" | "Velas" | "Venim" | "Veran" | "Verethi" | "Virith" | "Adas" | "Adren" | "Alen" | "Andalas" | "Andalen" |
+    "Andoril" | "Andules" | "Arano" | "Aravel" | "Aren" | "Arethan" | "Arethi" | "Beleth" | "Berano" | "Dral" |
+    "Dralas" | "Drelas" | "Drenim" | "Drethan" | "Drothan" | "Helvi" | "Henim" | "Ieneth" | "Indalas" | "Irano" |
+    "Llaram" | "Llarys" | "Llenim" | "Llethan" | "Lloran" | "Mandas" | "Nethan" | "Omalen" | "Omavel" | "Oren" |
+    "Orethi" | "Oril" | "Othan" | "Othran" | "Othren" | "Radas" | "Ralen" | "Rendas" | "Sadus" | "Sarendas" |
+    "Sarys" | "Seleth" | "Serethi" | "Tedas" | "Tenim" | "Thelas" | "Thirandus" | "Thirano" | "Uvaren" | "Uvenim" |
+    "Uveran" | "Varen" | "Varis" | "Alver" | "Andaren" | "Andavel" | "Andoren" | "Andrelo" | "Aralen" | "Areleth" |
+    "Arinith" | "Arothan" | "Athram" | "Athrys" | "Balen" | "Belas" | "Berendas" | "Berethi" | "Dalen" | "Darethi" |
+    "Daryon" | "Darys" | "Dran" | "Drom" | "Falas" | "Falen" | "Faram" | "Faren" | "Farethi" | "Farys" | "Favelnim" |
+    "Gilvayn" | "Heleran" | "Heran" | "Hlaalo" | "Hlan" | "Hlas" | "Hlen" | "Hler" | "Hloran" | "Indalen" |
+    "Indarys" | "Llendu" | "Marvel" | "Marys" | "Moren" | "Morvayn" | "Mothryon" | "Nelas" | "Nerano" | "Nirith" |
+    "Norvayn" | "Norvayne" | "Omalas" | "Omalor" | "Omoril" | "Omothan" | "Othralen" | "Othrelas" | "Othreleth" |
+    "Othreloth" | "Othrenim" | "Ralas" | "Raledran" | "Ravel" | "Releth" | "Romoren" | "Romori" | "Rothandus" |
+    "Samori" | "Sarandas" | "Sarothril" | "Savel" | "Savil" | "Sedas" | "Selaren" | "Selas" | "Selvilo" | "Sendas" |
+    "Sethan" | "Telas" | "Thendas" | "Tures" | "Ulven" | "Uvelas" | "Uvirith" | "Varam" | "Vari" | "Varyon" |
+    "Varys" | "Vedas" | "Vedran" | "Veleth" | "Verano" | "Vules" | "Adram" | "Adryn" | "Adus" | "Alam" | "Alan" |
+    "Alari" | "Alvor" | "Amori" | "Andalor" | "Andothan" | "Andral" | "Andrani" | "Andrilo" | "Androm" | "Andromo" |
+    "Androthi" | "Apo" | "Aradil" | "Aram" | "Areloth" | "Ares" | "Areth" | "Arns" | "Arval" | "Athelvis" | "Athin" |
+    "Athones" | "Avani" | "Avel" | "Avilo" | "Balur" | "Balvel" | "Bandas" | "Baram" | "Barelo" | "Baren" | "Baro" |
+    "Barus" | "Baryon" | "Barys" | "Bavani" | "Bedas" | "Belaal" | "Belan" | "Belaram" | "Belden" | "Beloren" |
+    "Bels" | "Belvani" | "Belvayn" | "Belvilo" | "Bemis" | "Benelas" | "Beneran" | "Benethran" | "Beni" | "Bereloth" |
+    "Beren" | "Berendus" | "Berer" | "Bero" | "Bethrano" | "Bethrimo" | "Bradyn" | "Braryn" | "Braven" | "Brenos" |
+    "Brenur" | "Brilyn" | "Carvaren" | "Dalas" | "Dalis" | "Dalobar" | "Dalomo" | "Dals" | "Dalvani" | "Damori" |
+    "Danoran" | "Daram" | "Darano" | "Daren" | "Darethran" | "Darothril" | "Darvel" | "Dathren" | "Davor" | "Davus" |
+    "Daynes" | "Delms" | "Deltis" | "Delvi" | "Demnevanni" | "Deras" | "Dilmyn" | "Dobar" | "Doran" | "Doren" |
+    "Dorvayn" | "Doves" | "Dradas" | "Dralayn" | "Dralen" | "Dralno" | "Drals" | "Drath" | "Drathen" | "Dredayn" |
+    "Dredil" | "Dreleth" | "Dreloth" | "Dres" | "Dreth" | "Driler" | "Drilvi" | "Drin" | "Drinith" | "Drivam" |
+    "Drobar" | "Drolan" | "Drolnor" | "Drora" | "Droryn" | "Droth" | "Drurel" | "Dulfass" | "Dulni" | "Duro" |
+    "Elarven" | "Elval" | "Elvul" | "Ertis" | "Evos" | "Falandas" | "Falavel" | "Falos" | "Fals" | "Falvani" |
+    "Famori" | "Faralen" | "Farandas" | "Faravel" | "Fareloth" | "Farethan" | "Farothran" | "Fatheran" | "Fathyron" |
+    "Favani" | "Faveran" | "Fedos" | "Felas" | "Felder" | "Fels" | "Fendyn" | "Fererus" | "Fevur" | "Folvyn" |
+    "Gadar" | "Galen" | "Gals" | "Garer" | "Garil" | "Garvon" | "Gavos" | "Gavyn" | "Gidran" | "Gilaram" | "Gilvani" |
+    "Gilvilo" | "Gimalvel" | "Gimayn" | "Gindu" | "Ginith" | "Giral" | "Giralvel" | "Girando" | "Girano" | "Girendas" |
+    "Girethi" | "Girothran" | "Girvayne" | "Githendas" | "Githrano" | "Givyn" | "Gobor" | "Golathyn" | "Gols" |
+    "Goran" | "Gorvas" | "Guls" | "Guvron" | "Hardil" | "Heladren" | "Helni" | "Helothan" | "Helothran" | "Helothren" |
+    "Herandus" | "Herendas" | "Herothran" | "Hlaano" | "Hlando" | "Hlarar" | "Hlarys" | "Hledas" | "Hledri" |
+    "Ildram" | "Ilnith" | "Imayn" | "Indavel" | "Indobar" | "Indoran" | "Indules" | "Inlador" | "Irathi" | "Irethi" |
+    "Ledd" | "Lladri" | "Llandu" | "Llendo" | "Llerayn" | "Llervi" | "Lleryn" | "Lloryn" | "Llothas" | "Llothri" |
+    "Madalas" | "Madalvel" | "Madryon" | "Malas" | "Maloren" | "Malvayn" | "Manas" | "Manel" | "Mano" | "Marvayn" |
+    "Marvos" | "Mathendis" | "Mavandes" | "Mels" | "Menas" | "Mencele" | "Merys" | "Milar" | "Milo" | "Mirel" |
+    "Molor" | "Moran" | "Nadram" | "Nadus" | "Nalyn" | "Naros" | "Navur" | "Nedalor" | "Neladren" | "Nelaram" |
+    "Neleth" | "Nelvani" | "Nelvayn" | "Nelvilo" | "Nerandas" | "Nerothan" | "Nerothren" | "Nerus" | "Nervion" |
+    "Nethalen" | "Nilem" | "Nilvon" | "Nithryon" | "Nolar" | "Nothro" | "Nothryon" | "Nulen" | "Ofemalen" | "Omani" |
+    "Omaren" | "Ondyn" | "Onmar" | "Orelu" | "Ores" | "Oreyn" | "Othralas" | "Othrobar" | "Quintella" | "Radarys" |
+    "Radobar" | "Ralaal" | "Raloran" | "Ralvani" | "Ralvayn" | "Ramarys" | "Ramoran" | "Ramori" | "Ramothran" |
+    "Randas" | "Raram" | "Rathri" | "Redas" | "Redothril" | "Reladren" | "Relarys" | "Relavel" | "Relenim" | "Relnim" |
+    "Reloro" | "Reloth" | "Relvani" | "Rendo" | "Reni" | "Renim" | "Reram" | "Rervam" | "Rethelas" | "Rethul" |
+    "Reyas" | "Rilvayn" | "Rindo" | "Rindu" | "Rinith" | "Rivul" | "Rols" | "Romandas" | "Romari" | "Romavel" |
+    "Romayn" | "Romoran" | "Romothran" | "Rothalen" | "Rothalnim" | "Rothalor" | "Rothan" | "Rothari" | "Rotheloth" |
+    "Rotheran" | "Rothrano" | "Rothren" | "Rurvyn" | "Ryon" | "Sadalas" | "Sadalvel" | "Sadas" | "Sadoro" | "Sadralo" |
+    "Sadrano" | "Sadryon" | "Sadrys" | "Sala" | "Salam" | "Salandas" | "Salaren" | "Salaron" | "Salavel" | "Salen" |
+    "Salenim" | "Salmyn" | "Salobar" | "Salor" | "Salvi" | "Samandas" | "Sandus" | "Sarandus" | "Sarathram" |
+    "Sareloth" | "Sarethan" | "Sari" | "Sarinith" | "Sarobar" | "Sarothran" | "Sarothren" | "Saryoni" | "Sathendas" |
+    "Sathis" | "Sathren" | "Sathryon" | "Savani" | "Sedrethi" | "Sedri" | "Selandas" | "Selaro" | "Selarys" |
+    "Seles" | "Selothan" | "Selvayn" | "Sendu" | "Senoril" | "Seralas" | "Serano" | "Seri" | "Serothan" | "Serven" |
+    "Sethandas" | "Sethandus" | "Sethri" | "Surishpi" | "Talds" | "Tedalen" | "Tedran" | "Telandas" | "Telmon" |
+    "Telnim" | "Telvani" | "Teneran" | "Terandas" | "Terano" | "Teri" | "Teria" | "Terilu" | "Tervayn" | "Thalas" |
+    "Thalor" | "Thando" | "Tharam" | "Tharyon" | "Tharys" | "Theman" | "Thenim" | "Therayn" | "Therethi" |
+    "Thilandas" | "Thilarvel" | "Thimalvel" | "Thindo" | "Thiralas" | "Thireloth" | "Thirith" | "Thirothan" |
+    "Thirvayn" | "Tilvur" | "Tistar" | "Tobor" | "Trandel" | "Tunel" | "Tyravel" | "Uleni" | "Ulessen" | "Ulom" |
+    "Ulvel" | "Ulver" | "Urns" | "Urvon" | "Urvyn" | "Uvalas" | "Uvalen" | "Uvalor" | "Uvani" | "Uvaram" | "Uveleth" |
+    "Uvulas" | "Vadryon" | "Valaai" | "Valas" | "Valen" | "Valno" | "Valor" | "Vando" | "Vandram" | "Varo" | "Vavas" |
+    "Vavyn" | "Vedaren" | "Vedralu" | "Vedrano" | "Velendas" | "Velni" | "Veloren" | "Veloth" | "Velothren" |
+    "Velothril" | "Veralor" | "Verelas" | "Verendas" | "Veri" | "Verilnith" | "Verothan" | "Viake" | "Vian" |
+    "Vibato" | "Vidron" | "Vilas" | "Vinden" | "Volos" |
+    "Alas" | "Aran" | "Arys" | "Beran" | "Dareleth" | "Dulo" | "Fadathram" | "Favel" | "Gimothran" | "Helan" | "Hlervi" |
+    "Llando" | "Marvani" | "Raviro" | "Redoran" | "Rethandus" | "Salothan" | "Salothran" | "Salvel" | "Samarys" |
+    "Sandas" | "Telvayn" | "Tharys" | "Vandus" | "Verelnim" ;
+
+<nter_female_dunmer_name> ::= <ter_female_dunmer_first_name> <ter_dunmer_surname> ;
+<nter_male_dunmer_name> ::= <ter_male_dunmer_first_name> <ter_dunmer_surname> ;
+
+<start_dunmer_name> ::= <nter_female_dunmer_name> | <nter_male_dunmer_name> ;
+
+<ter_male_ashlander_first_name> ::=
+    "Mausur" | "Ainab" | "Maeonius" | "Manat" | "Missun" | "Mubdan" | "Odairan" | "Zallit" |
+    "Ababael" | "Abassel" | "Abibaal" | "Abishpulu" | "Adairan" | "Adaishah" | "Addammus" | "Addarnat" |
+    "Adibael" | "Ahasour" | "Ahaz" | "Ainab" | "Ainat" | "Anasour" | "Anit" | "Asha-Ammu" | "Ashibaal" |
+    "Ashu-Ahhe" | "Ashuma-Nud" | "Ashur-Dan" | "Assaba-Bentus" | "Assallit" | "Assamanut" | "Assamma-Idan" |
+    "Assantus" | "Assatlit" | "Assemmus" | "Assurdan" | "Balur" | "Beden" | "Conoon" | "Dakin" | "Dralas" |
+    "Dun-Ilu" | "Dunsalipal" | "Dutadalk" | "Elibael" | "Emul-Ran" | "Erur-Dan" | "Esar-Don" | "Esib-Nummu" |
+    "Hainab" | "Hairan" | "Han-Ammu" | "Hannat" | "Hassour" | "Hemus" | "Hentus" | "Hibaddar" | "Hinammu" |
+    "Hirarend" | "Ibarnadad" | "Ibasour" | "Ilasour" | "Kanat" | "Kanit" | "Kanud" | "Kashtes" | "Kaushad" |
+    "Kausi" | "Kind" | "Kitbael" | "Kummi-Namus" | "Kund" | "Lassour" | "Mabarrabael" | "Maesat" | "Mal" |
+    "Malay" | "Mansilamat" | "Massarapal" | "Massour" | "Mibdinahaz" | "Minassour" | "Minisun" | "Minnibi" |
+    "Musan" | "Mut" | "Nind" | "Ninimilk" | "Ninirrasour" | "Nirait" | "Nund" | "Odaishah" | "Ohibaal" |
+    "Patababi" | "Patus" | "Pilun" | "Punibi" | "Ranabi" | "Sakin" | "Sakulerib" | "Sal" | "Salattanat" |
+    "Salay" | "Salmat" | "Salmus" | "Sannit" | "Sargon" | "Seldus" | "Selk" | "Selkirnemus" | "Shabinbael" |
+    "Shanat" | "Shanit" | "Shannat" | "Shanud" | "Shargon" | "Shilipuran" | "Shimsun" | "Shin" | "Shipal" |
+    "Shirerib" | "Shullay" | "Subenend" | "Sul-Matuul" | "Talkin" | "Teshmus" | "Tibdan" | "Tinti" | "Tis" |
+    "Truan" | "Tubilalk" | "Tussurradad" | "Ulabael" | "Ulath-Pal" | "Yahaz" | "Yakin" | "Yakum" | "Yan" |
+    "Yanit" | "Yantus" | "Yapal" | "Yassour" | "Yeherradad" | "Yen" | "Yenammu" | "Zabamund" | "Zabarbael" |
+    "Zainat" | "Zairan" | "Zalabelk" | "Zalit" | "Zallay" | "Zanat" | "Zanmulk" | "Zebba" | "Zebdusipal" |
+    "Zelaku" | "Zelay" | "Zenabi" | "Zennammu" ;
+
+<ter_female_ashlander_first_name> ::=
+    "Mamaea" | "Manirai" | "Manu" | "Nummu" | "Shara" | "Zebba" | "Addut-Lamanu" | "Adusamsi" | "Ahanabi" |
+    "Ansu" | "Antu" | "Ashamanu" | "Asharapli" | "Ashumanu" | "Assamanu" | "Assi" | "Assimusa" | "Assirari" |
+    "Assumanu" | "Benudni" | "Berapli" | "Dissu" | "Elitlaya" | "Elumabi" | "Hainab" | "Hairan" | "Hanarai" |
+    "Hannabi" | "Hansi" | "Hinummu" | "Ibanammu" | "Kammu" | "Kausha" | "Kummu" | "Kurapli" | "Kushishi" |
+    "Lanabi" | "Maela" | "Maeli" | "Mamusa" | "Manabi" | "Man-Ilu" | "Mi-Ilu" | "Midnabi" | "Milynea" |
+    "Mimanu" | "Minabibi" | "Missamsi" | "Munbebi" | "Musa" | "Nammu" | "Nibani" | "Nirai" | "Peakstar" |
+    "Pilu" | "Raishi" | "Rasamsi" | "Rawia" | "Sakiran" | "Samsi" | "Santinti" | "Seba" | "Sen" | "Senipu" |
+    "Shali" | "Shallath-Piremus" | "Shinammu" | "Shishi" | "Shulki" | "Shullay" | "Sinnammu" | "Sonummu" |
+    "Tashpi" | "Tissamsi" | "Tunipy" | "Tussi" | "Ulibabi" | "Ulisamsi" | "Urshamusa" | "Vabbar" | "Yan-Ahhe" |
+    "Yanabani" | "Yanibi" | "Yenabi" | "Zaba" | "Zabi" | "Zanummu" | "Zennammu" | "Zula" ;
+
+<ter_ashlander_surname> ::=
+    "Vabdas" | "Almu" | "Man-llu" | "Mantiti" | "Yahaz" | "Zainsubani" | "Zama-Rasour" | "Ababael" | "Abalkala" |
+    "Abelmawia" | "Addarari" | "Addaribantes" | "Addinibi" | "Addunipu" | "Adidshina" | "Adur-Dan" | "Ahalkalun" |
+    "Ahanidiran" | "Akin" | "Anurnudai" | "Ashalkimallit" | "Ashananapal" | "Ashapaladdon" | "Asharapli" |
+    "Ashar-Dad" | "Ashar-Don" | "Asharnalit" | "Ashibael" | "Ashi-Iddan" | "Ashirbibi" | "Ashishpalirdan" |
+    "Ashumallit" | "Ashummi-Ammus" | "Ashunbabi" | "Ashun-Idantus" | "Ashurnasaddas" | "Ashushshirari" |
+    "Assalatammis" | "Assannabalit" | "Assantinalit" | "Assaplit" | "Assarbeberib" | "Assardarainat" |
+    "Assardidairan" | "Assarnibani" | "Assarnuridan" | "Assarrapanat" | "Assarrimisun" | "Assattadaishah" |
+    "Assebiriddan" | "Assemmus" | "Asserbassalit" | "Asserrumusa" | "Assillariran" | "Assinabi" |
+    "Assintashiran" | "Assirnarari" | "Assonirishpal" | "Assudiraplit" | "Assudnilamat" | "Assullinbanud" |
+    "Assumanallit" | "Assunbahanammu" | "Assunudadnud" | "Assurnarairan" | "Assurnipilu" | "Assurnumanit" |
+    "Assurnumausur" | "Assutladainab" | "Assutlanipal" | "Atinsabia" | "Bael" | "Benamamat" | "Chodala" |
+    "Darirnaddunumm" | "Dinadad" | "Dudnebisun" | "Dun-Ahhe" | "Dunsamsi" | "Elarrapal" | "Enturnabaelul" |
+    "Eraishah" | "Eramarellaku" | "Erarbadon" | "Erushara" | "Esatliballit" | "Esurarnat" | "Esurnadarpal" |
+    "Giladren" | "Gilu" | "Hainnabibi" | "Hainterari" | "Hairshashishi" | "Hairshumusa" | "Hansar" | "Ilabael" |
+    "Ilath-Pal" | "Ilurnubishpal" | "Kaushad" | "Kaushmamanu" | "Kaushminipu" | "Kil" | "Kummimmidan" |
+    "Kuntarnammu" | "Kutebani" | "Lalansour" | "Lasamsi" | "Laserbillahemmi" | "Maesa" | "Maessabibi" |
+    "Maliiran" | "Malman-Ammu" | "Mannanalit" | "Mantashpi" | "Massitisun" | "Matluberib" | "Mibishanit" |
+    "Mirathrernenum" | "Mirpal" | "Mirshamammu" | "Muddumummu" | "Nerendus" | "Niladon" | "Odimabesser" |
+    "Odin-Ahhe" | "Odirnapal" | "Pansamsi" | "Pudashara" | "Puntumisun" | "Radansour" | "Ranarbatus" | "Rapli" |
+    "Saddarnuran" | "Saharnatturapli" | "Saladnius" | "Salkatanat" | "Salvu" | "Samma" | "Sammalamus" | "Samsi" |
+    "Sanammasour" | "Santumatus" | "Sehabani" | "Selitbael" | "Selkin-Adda" | "Senatbael" | "Serdimapal" |
+    "Serimilk" | "Sershurrapal" | "Shalarnetus" | "Shamirbasour" | "Shand" | "Shashipal" | "Shashmassamsi" |
+    "Shilansour" | "Shimmabadas" | "Shin-Ilu" | "Shinirbael" | "Shishara" | "Siddurnanit" | "Sobbinisun" |
+    "Sobdishapal" | "Sonnerralit" | "Subaddamael" | "Tansumiran" | "Tibashipal" | "Timmiriran" | "Timsar-Dadisun" |
+    "Ududnabia" | "Ulannanit" | "Ularshanentus" | "Ulirbabi" | "Urshan-Adairan" | "Urshummarnamus" | "Urshumusa" |
+    "Varnan-Adda" | "Yansurnummu" | "Yanumibaal" | "Yasalmibaal" | "Yassabisun" | "Yentimilal" | "Yessur-Disadon" |
+    "Zabamat" | "Zabynatus" | "Zainab" | "Zaintashara" | "Zansatanit" | "Zeba-Adad" | "Zelma-Alit" | "Zenammu" ;
+
+<nter_female_ashlander_name> ::= <ter_female_ashlander_first_name> <ter_ashlander_surname> ;
+<nter_male_ashlander_name> ::= <ter_male_ashlander_first_name> <ter_ashlander_surname> ;
+
+<start_ashlander_name> ::= <nter_female_ashlander_name> | <nter_male_ashlander_name> ;
+
+<ter_female_imperial_first_name> ::=
+    "Adraria" | "Agrippina" | "Ahetotis" | "Alcedonia" | "Apronia" | "Arenara" | "Audania" | "Blatta" | "Cania" |
+    "Canodia" | "Catia" | "Cinda" | "Cinia" | "Clilias" | "Coventina" | "Craetia" | "Eloe" | "Emelia" | "Eponis" |
+    "Ettiene" | "Fallaise" | "Fammana" | "Fentula" | "Flacassia" | "Flaenia" | "Fralvia" | "Fruscia" | "Gaea" |
+    "Germia" | "Horulia" | "Idonea" | "Isobel" | "Ladia" | "Lalaine" | "Lalatia" | "Larienna" | "Lassinia" |
+    "Laurina" | "Leone" | "Livia" | "Lunia" | "Maesa" | "Marara" | "Moria" | "Nebia" | "Pallia" | "Pania" | "Pelena" |
+    "Pellecia" | "Peregrina" | "Pritia" | "Raesa" | "Ruccia" | "Sabrina" | "Sarmosia" | "Selvia" | "Severa" |
+    "Severia" | "Solea" | "Syloria" | "Thraccenia" | "Vala" | "Vianis" | "Viatrix" | "Viccia" | "Vilbia" | "Volrina" ;
+
+<ter_male_imperial_first_name> ::=
+    "Aebondeius" | "Afer" | "Albecius" | "Allian" | "Antonius" | "Apelles" | "Ariulcabor" | "Arius" | "Arrinis" |
+    "Astius" | "Attelivupis" | "Audenian" | "Augurius" | "Aunius" | "Bacola" | "Baro" | "Benunius" | "Burcanius" |
+    "Caccian" | "Caius" | "Calvario" | "Calvus" | "Canctunian" | "Capiton" | "Cassius" | "Carnius" | "Cavortius" |
+    "Cidius" | "Cimber" | "Clagius" | "Clasomo" | "Clecentor" | "Clibergus" | "Cocistian" | "Codus" | "Coirtene" |
+    "Constans" | "Corrudus" | "Crassius" | "Crottus" | "Crulius" | "Cunius" | "Darius" | "Depusanis" | "Drusus" |
+    "Dunius" | "Durus" | "Duvianus" | "Ertius" | "Esdrufus" | "Falco" | "Falx" | "Fandus" | "Frinnius" | "Furius" |
+    "Ganciele" | "Gergio" | "Glallian" | "Granius" | "Gratian" | "Gualtierus" | "Hasphat" | "Ignatius" | "Ildogesto" |
+    "Ilnori" | "Iratian" | "Iulus" | "Jonus" | "Larisus" | "Larrius" | "Letreius" | "Levus" | "Linus" | "Lucan" |
+    "Lucretinaus" | "Lurius" | "Luspinian" | "Luven" | "Malpenix" | "Manilian" | "Marsus" | "Masque" | "Matus" |
+    "Mecilvus" | "Miles" | "Molvirian" | "Moris" | "Murberius" | "Murudius" | "Mus" | "Namanian" | "Naspis" |
+    "Natalinus" | "Nirtunus" | "Nitterius" | "Nolus" | "Oritius" | "Percius" | "Pilper" | "Pilus" | "Plitinius" |
+    "Processus" | "Procyon" | "Pustula" | "Raxle" | "Reberio" | "Rufinus" | "Sabinus" | "Saenus" | "Saprius" |
+    "Sauleius" | "Scelian" | "Segunivus" | "Seliulus" | "Sellus" | "Senilias" | "Silius" | "Sirollus" | "Sitialius" |
+    "Somutis" | "Stentus" | "Stlubo" | "Strillian" | "Surus" | "Synnolian" | "Tappius" | "Tasellis" | "Ticemius" |
+    "Tienius" | "Tininnus" | "Trebonius" | "Turedus" | "Tyronius" | "Vala" | "Valgus" | "Valvius" | "Vantustius" |
+    "Varian" | "Varus" | "Vasesius" | "Vertilvius" | "Vinnus" | "Vodunius" | "Zeno" | "Crito" ;
+
+<ter_imperial_surname_root> ::=
+    "Atri" | "Cadius" | "Faust" | "Flacc" | "Herenni" | "Olcini" | "Pulli" | "Tulli" | "Abiti" | "Acici" |
+    "Acili" | "Aeri" | "Afroni" | "Agrudili" | "Alfen" | "Allei" | "Amati" | "Amiulus" | "Amphi" | "Angi" |
+    "Apini" | "Artori" | "Aurr" | "Autr" | "Baeni" | "Bloni" | "Burtili" | "Caerelli" | "Callon" | "Cari" |
+    "Catani" | "Cati" | "Celat" | "Ceruni" | "Claevi" | "Closci" | "Cololli" | "Conciati" | "Cnisi" | "Dergi" |
+    "Duroni" | "Egnati" | "Enti" | "Famali" | "Fausei" | "Flarugri" | "Flavoni" | "Fulcini" | "Grati" | "Gravi" |
+    "Harsini" | "Horati" | "Herenni" | "Laecinni" | "Laeni" | "Laleli" | "Lusi" | "Mantedi" |
+    "Mari" | "Magi" | "Menani" | "Muspidi" | "Macrin" | "Maraenni" | "Mati" | "Maxim" | "Merci" | "Mevurei" |
+    "Mussilli" | "Muni" | "Nigili" | "Nucci" | "Nuccusi" | "Nunci" | "Olcini" | "Orani" | "Ostori" | 
+    "Peleli" | "Petili" | "Pevengi" | "Plaloci" | "Platori" | "Poni" | "Popilli" | "Posucei" | "Purusei" |
+    "Rosci" | "Sceri" | "Scini" | "Secuni" | "Siali" | "Sibassi" | "Sosi" | "Spuri" | "Statlili" |
+    "Tiragri" | "Urti" | "Valeri" | "Vali" | "Valodi" | "Vantini" | "Vitelli" | "Gabini" ;
+
+
+<ter_imperial_surname_unisex> ::=
+    "Albarnian" | "Albuttian" | "Amnis" | "Antabolis" | "Carbo" | "Caro" | "Catraso" | "Cedus" | "Ceno" | "Cines" |
+    "Clanler" | "Conician" | "Cosades" | "Crunus" | "Cullian" | "Curio" | "Delitian" | "Denian" | "Douar" |
+    "Esdrecus" | "Essagan" | "Facian" | "Felannus" | "Flaeus" | "Fulbenus" | "Furotis" | "Gabenagus" |
+    "Galenus" | "Gratus" | "Hanotepelus" | "Harmevus" | "Hateria" |  "Hers" | "Hertarian" | "Iulus" |
+    "Jannus" | "Jucanis" | "Jullalian" | "Leontiulonus" | "Liore" | "Macro" |  "Maro" | "Otiustiris" | "Palenix" | "Plebo" |
+    "Mero" | "Mico" | "Mido" | "Muco" | "Musilchiotus" | "Pontanian" |  "Pundus" | "Quaspus" | "Rato" |
+    "Rulician" | "Saccus" | "Siruliulus" | "Talanian" | "Truptor" | "Tunifus" | "Urgelian" | "Urgusiso" |
+    "Uulentanus" | "Vandacia" | "Vant" | "Varian" | "Varo" | "Varro" | "Velvus" | "Viciulus" | "Vinipter" | "Vunnis" ;
+
+<nter_female_imperial_surname> ::= <ter_imperial_surname_root>a ;
+<nter_male_imperial_surname> ::= <ter_imperial_surname_root>us ;
+
+
+<nter_imperial_surname> ::= <nter_female_imperial_surname> | <nter_male_imperial_surname> ;
+
+
+<nter_female_imperial_name> ::= <ter_female_imperial_first_name> <nter_female_imperial_surname> ;
+<nter_male_imperial_name> ::= <ter_male_imperial_first_name> <nter_male_imperial_surname> ;
+
+<start_imperial_name> ::= <nter_female_imperial_name> | <nter_male_imperial_name> ;
+
+<ter_female_khajiit_first_name> ::=
+    "Abanji" | "Adanja" | "Addhiranirr" | "Adharanji" | "Affri" | "Ahdahni" | "Ahdni" | "Ahdri" | "Ahjara" |
+    "Ahnarra" | "Ahnassi" | "Ahndahra" | "Ahnia" | "Ahnisa" | "Ahzini" | "Aina" | "Ajira" | "Anjari" | "Arabhi" |
+    "Aravi" | "Ashidasha" | "Bahdahna" | "Bahdrashi" | "Baissa" | "Bhusari" | "Chirranirr" | "Dahleena" | "Dahnara" |
+    "Ekapi" | "Harassa" | "Habasi" | "Idhassi" | "Inerri" | "Inorra" | "Kaasha" | "Khamuzi" | "Khazura" | "Khinjarsi" |
+    "Kiseena" | "Kishni" | "Kisimba" | "Kisisa" | "Nisaba" | "Rabinna" | "Shaba" | "Shivani" | "Shotherra" | "Shunari" |
+    "Tsabhi" | "Tsajadhi" | "Tsalani" | "Tsani" | "Tsiya" | "Tsrazami" | "Ubaasi" | "Udarra" |
+    "Unjara" | "Vanjirra" | "Zahraji" ;
+
+<ter_male_khajiit_first_name> ::=
+    "Baadargo" | "Dro'Barri" | "Dro'farahn" | "Dro'Qanar" | "Dro'Sakhar" | "Dro'Shavir" | "Dro'Tasarr" | "Dro'Zah" |
+    "Dro'Zaymar" | "Dro'zharim" | "Dro'Zhirr" | "J'Dato" | "J'Dhannar" | "J'Hanir" | "J'Jarsha" | "J'Jazha" |
+    "J'Kara" | "Jobasha" | "Jodhur" | "Jo'Ren-Dar" | "Joshur" | "Jo'Thri-Dar" | "J'Raksa" | "J'Rasha" | "J'Saddha" |
+    "J'Zamha" | "J'Zhirr" | "Ma'Dara" | "M'Aiq" | "Ma'Jidarr" | "Ma'Khar" | "Ma'Zahn" | "M'nashi" | "M'Shan" |
+    "Qa'Dar" | "Ra'Karim" | "Ra'Kothre" | "Ra'Mhirr" | "Ra'Sava" | "Ra'Tesh" | "Ra'Virr" | "Ra'Zahr" | "Ra'Zhid" |
+    "Ri'Darsha" | "Ri'Dumiwa" | "Ri'Shajirr" | "Ri'Vassa" | "Ri'Zaadha" | "S'Bakha" | "Sholani" | "S'Radirr" |
+    "S'Rava" | "S'Raverr" | "S'Renji" | "S'Vandra" | "S'virr" | "Thengil" | "Urjorad" | "Wadarkhu" ;
+
+
+<ter_khajiit_surname> ::= "";
+
+<nter_female_khajiit_name> ::= <ter_female_khajiit_first_name>;
+<nter_male_khajiit_name> ::= <ter_male_khajiit_first_name>;
+
+<start_khajiit_name> ::= <nter_female_khajiit_name> | <nter_male_khajiit_name> ;
+
+<ter_female_nord_first_name> ::=
+    "Aeta" | "Aldi" | "Anja" | "Aumsi" | "Barri" | "Bergljot" | "Brasteir" | "Eigma" | "Eiruki" | "Ekkhi" | "Erna" |
+    "Eydis" | "Fryfnhild" | "Fryssa" | "Greidil" | "Grerid" | "Haema" | "Heddvild" | "Helga" | "Hidar" | "Hjotra" |
+    "Holmgeira" | "Horski" | "Hreirek" | "Hroa" | "Hrordis" | "Hyring" | "Igna" | "Ilfhild" | "Imsin" | "Ingokning" |
+    "Jolding" | "Kar" | "Kili" | "Kjolver" | "Kolfinna" | "Lisaa" | "Merta" | "Mette" | "Olfeigr" | "Ondi" | "Rangela" |
+    "Ringvild" | "Risi" | "Rostlogi" | "Runa" | "Siri" | "Sottilde" | "Svenja" | "Thalestris" | "Thunmund" | "Ulfrun" |
+    "Ursine" | "Val" | "Vori" | "Ygfa" ;
+
+<ter_male_nord_first_name> ::=
+    "Abbard" | "Adding" | "Aenar" | "Agning" | "Alfbrand" | "Alfhedil" | "Allding" | "Alof" | "Alvring" |
+    "Andrelheim" | "Areas" | "Arkming" | "Arnskar" | "Audmund" | "Balfring" | "Barirrid" | "Baslod" |
+    "Bathmar" | "Bato" | "Batou" | "Bedraflod" | "Bedrir" | "Bjadmund" | "Bormir" | "Botrir" | "Brandr" |
+    "Briring" | "Bronrod" | "Brurid" | "Bryngrim" | "Brynjolfr" | "Cristus" | "Daglin" | "Dathman" |
+    "Dryngheid" | "Eifid" | "Engar" | "Ennbjof" | "Ergnir" | "Erich" | "Fanar" | "Fjol" | "Fjorgeir" |
+    "Fjori" | "Fjorrod" | "Fjrokvar" | "Forstaag" | "Fraki" | "Frald" | "Frik" | "Garding" | "Geilir" |
+    "Godrod" | "Gogrek" | "Graring" | "Gudling" | "Haakon" | "Haening" | "Haesmar" | "Hagrad" | "Hakar" |
+    "Hallvaror" | "Halof" | "Hamlof" | "Hamvir" | "Hefadmir" | "Heidmir" | "Heifnir" | "Herd" | "Higil" |
+    "Hirnir" | "Hisin" | "Hjoldir" | "Hjrondir" | "Hlar" | "Hloggar" | "Hlora" | "Hlormar" | "Hodlismod" |
+    "Hoki" | "Holmar" | "Honthjolf" | "Horstar" | "Hrargal" | "Hrisskar" | "Hroldar" | "Hrondar" | "Hrundi" |
+    "Hulgarth" | "Hurg" | "Hurnfing" | "Hurolf" | "Hylf" | "Idlami" | "Ingmar" | "Itar" | "Jolgeir" |
+    "Kjeld" | "Knurguri" | "Korst" | "Kunthar" | "Lassnr" | "Lorod" | "Maering" | "Mendel" | "Norring" |
+    "Odmi" | "Onmi" | "Ormvard" | "Pelf" | "Radd" | "Raflod" | "Rakoslod" | "Ranmir" | "Reinhardt" |
+    "Rigmor" | "Roggvar" | "Rolf" | "Saetring" | "Sarnir" | "Sattir" | "Savard" | "Sifknir" | "Sigvatr" |
+    "Sittar" | "Sjarnfid" | "Sjoring" | "Sjorvar" | "Skjoldr" | "Snadir" | "Snedbrir" | "Snorri" | "Sold" |
+    "Sor" | "Sorkvild" | "Star" | "Svog" | "Tharsten" | "Thongar" | "Thorek" | "Thormoor" | "Throknolf" |
+    "Thrud" | "Thurek" | "Toralf" | "Tymvaul" | "Ulfgar" | "Urfing" | "Valgeir" | "Valund" | "Velfred" |
+    "Vigunn" | "Virgerd" | "Vongvild" | "Yngling" | "Haki" ;
+
+
+<ter_nord_surname> ::= "";
+
+<nter_female_nord_name> ::= <ter_female_nord_first_name> ;
+<nter_male_nord_name> ::= <ter_male_nord_first_name> ;
+
+<start_nord_name> ::= <nter_female_nord_name> | <nter_male_nord_name> ;
+
+
+<ter_female_orc_first_name> ::=
+    "Agrob" | "Badbog" | "Bashuk" | "Bogdub" | "Bugdurash" | "Bula" | "Bulak" | "Bulfim" | "Bum" |
+    "Burub" | "Burzob" | "Dura" | "Durgat" | "Durz" | "Gashnakh" | "Ghob" | "Glasha" | "Glob" |
+    "Gluronk" | "Gonk" | "Grat" | "Grazob" | "Gulfim" | "Kharzug" | "Lagakh" | "Lambug" | "Lazgar" |
+    "Mogak" | "Morn" | "Murob" | "Murzush" | "Nargol" | "Orbul" | "Ragash" | "Rolfish" | "Rulfim" |
+    "Shadbak" | "Shagar" | "Shagdub" | "Sharn" | "Sharog" | "Shelur" | "Sloomalah" | "Uloth" |
+    "Ulumpha" | "Urzoth" | "Urzul" | "Ushug" | "Yazgash" ;
+
+<ter_male_orc_first_name> ::=
+    "Moghakh" | "Atulg" | "Azuk" | "Bagamul" | "Bakh" | "Baronk" | "Bashag" | "Bazgulub" | "Bogakh" |
+    "Bologra" | "Borug" | "Both" | "Bugdul" | "Bugharz" | "Bugrash" | "Bugrol" | "Bumbub" | "Burul" |
+    "Dul" | "Dular" | "Duluk" | "Duma" | "Dumbuk" | "Dumburz" | "Dur" | "Durbul" | "Durgash" | "Durz" |
+    "Durzol" | "Durzub" | "Durzum" | "Garothmuk" | "Garzonk" | "Gashna" | "Ghamborz" | "Ghamonk" |
+    "Ghoragdush" | "Ghorlorz" | "Glush" | "Grat" | "Gruzgob" | "Guarg" | "Gurak" | "Khadba" | "Khagra" |
+    "Khargol" | "Koffutto" | "Largakh" | "Lorbumol" | "Lorzub" | "Lugdum" | "Lugrub" | "Lurog" | "Mash" |
+    "Matuk" | "Mauhul" | "Mazorn" | "Mol" | "Morbash" | "Mug" | "Mugdul" | "Muk" | "Murag" | "Murkub" |
+    "Murzol" | "Muzgonk" | "Nag" | "Nar" | "Nash" | "Ogrul" | "Ogrumbu" | "Olfin" | "Olumba" | "Orakh" |
+    "Rogdul" | "Shakh" | "Shamar" | "Shamob" | "Shargam" | "Sharkub" | "Shat" | "Shazgob" | "Shulong" |
+    "Shura" | "Shurkul" | "Shuzug" | "Snaglak" | "Snakha" | "Snat" | "Ugdumph" | "Ughash" | "Ulam" |
+    "Umug" | "Uram" | "Urim" | "Urul" | "Urzog" | "Ushamph" | "Ushat" | "Yadba" | "Yagak" | "Yak" |
+    "Yam" | "Yambagorn" | "Yambul" | "Yargol" | "Yashnarz" | "Yatur" ;
+
+<ter_orc_surname> ::=
+    "Agadbu" | "Aglakh" | "Agum" | "Atumph" | "Azorku" | "Badbu" | "Bagrat" | "Bagul" | "Bamog" | "Bar" |
+    "Bargamph" | "Bashnag" | "Bat" | "Batul" | "Boga" | "Bogamakh" | "Bogharz" | "Bogla" | "Boglar" |
+    "Bogrol" | "Boguk" | "Bol" | "Bolak" | "Borbog" | "Borbul" | "Bug" | "Bugarn" | "Bulag" | "Bularz" |
+    "Bulfish" | "Burbug" | "Burish" | "Burol" | "Buzga" | "Dugul" | "Dul" | "Dula" | "Dulob" | "Dumul" |
+    "Dumulg" | "Durga" | "Durog" | "Durug" | "Dush" | "Gar" | "Gashel" | "Gat" | "Ghash" | "Ghasharzol" |
+    "Gholfim" | "Gholob" | "Ghorak" | "Glorzuf" | "Gluk" | "Glurkub" | "Gorzog" | "Grambak" | "Gulfim" |
+    "Gurakh" | "Gurub" | "Kashug" | "Khagdum" | "Kharbush" | "Kharz" | "Khash" | "Khashnar" | "Khatub" |
+    "Khazor" | "Lag" | "Lagdub" | "Largum" | "Lazgarn" | "Loghash" | "Logob" | "Logrob" | "Lorga" |
+    "Lumbuk" | "Lumob" | "Lurkul" | "Lurn" | "Luzgan" | "Magar" | "Magrish" | "Mar" | "Marob" | "Mashnar" |
+    "Mogduk" | "Moghakh" | "Mughol" | "Muk" | "Mulakh" | "Murgol" | "Murug" | "Murz" | "Muzgob" | "Muzgub" |
+    "Muzgur" | "Ogar" | "Ogdub" | "Ogdum" | "Olor" | "Olurba" | "Orbuma" | "Rimph" | "Rugob" | "Rush" |
+    "Rushub" | "Shadbuk" | "Shagdub" | "Shagdulg" | "Shagrak" | "Shagramph" | "Shak" | "Sham" | "Shamub" |
+    "Sharbag" | "Sharga" | "Sharob" | "Sharolg" | "Shat" | "Shatub" | "Shazog" | "Shug" | "Shugarz" | "Shugham" |
+    "Shula" | "Shulor" | "Shumba" | "Shuzgub" | "Skandar" | "Snagarz" | "Snagdu" | "Ufthamph" | "Uftharz" |
+    "Ugruma" | "Ular" | "Ulfimph" | "Urgak" | "Ushar" | "Ushug" | "Ushul" | "Uzgurn" | "Uzuk" | "Yagarz" |
+    "Yak" | "Yargul" | "Yarzol" ;
+
+<nter_female_orc_name> ::= <ter_female_orc_first_name> gra-<ter_orc_surname> ;
+<nter_male_orc_name> ::= <ter_male_orc_first_name> gro-<ter_orc_surname> ;
+
+<start_orc_name> ::= <nter_female_orc_name> | <nter_male_orc_name> ;
+
+
+<ter_female_redguard_first_name> ::=
+    "Alusannah" | "Ancola" | "Anora" | "Balan" | "Caminda" | "Chalone" | "Dandsa" | "Davina" | "Domba" |
+    "Dulian" | "Elone" | "Ena" | "Enjine" | "Erla" | "Ery" | "Gwen" | "Hussonia" | "Jaline" | "Jamie" |
+    "Jeanne" | "Jolda" | "Kanet" | "Karlirah" | "Kati" | "Katie" | "Kirginia" | "Laire" | "Landa" | "Lette" |
+    "Malexa" | "Manicky" | "Margonet" | "Miniel" | "Mirisa" | "Monsey" | "Nanine" | "Neminda" | "Pemenie" |
+    "Relinda" | "Rithleen" | "Senyndie" | "Shardie" | "Sinia" | "Sulesa" | "Tiela" | "Todwendy" ;
+
+<ter_male_redguard_first_name> ::=
+    "Achel" | "Alusaron" | "Bodean" | "Camas" | "Chark" | "Chrelm" | "Cluson" | "Daracy" | "Daron" | "Din" |
+    "Dinok" | "Domalen" | "Dortodd" | "Dudley" | "Ennah" | "Farmin" | "Frink" | "Gancolm" | "Garry" | "Glannison" |
+    "Gor" | "Hasell" | "Hickim" | "Hinald" | "Ian" | "Ilden" | "Iminda" | "Jart" | "Jathlanie" |
+    "Jeleen" | "Jelin" | "Jim" | "Jine" | "Jon" | "Jonis" | "Kalorter" | "Karrod" | "Kaye" | "Lanald" | "Lesley" |
+    "Lidebras" | "Nachael" | "Nannithon" | "Nistacey" | "Penald" | "Raccan" | "Raig" | "Rinina" | "Rissinia" |
+    "Sader" | "Sason" | "Shenk" | "Silasson" | "Sorian" | "Soscean" | "Stargel" | "Stenet" | "Sterdecan" |
+    "Sticey" | "Therdon" | "Torline" | "Tralan" | "Trasteve" | "Vilamon" | "Waylas" | "Wayn" ;
+
+<ter_redguard_surname> ::= "" ;
+
+<nter_female_redguard_name> ::= <ter_female_redguard_first_name>;
+<nter_male_redguard_name> ::= <ter_male_redguard_first_name>;
+
+<start_redguard_name> ::= <nter_female_redguard_name> | <nter_male_redguard_name> ;
