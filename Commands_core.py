@@ -14,8 +14,6 @@ import numexpr as ne
 from translate import Translator
 import shlex 
 import random
-import requests
-from bs4 import BeautifulSoup
 import pandas as pd
 import grammar
 
@@ -222,15 +220,31 @@ async def command_morrowgen(args, message,commandList):
     skills_list = ["Alchemy", "Alteration", "Armorer", "Athletics", "Axe", "Block", "Blunt Weapon", "Conjuration", "Destruction", "Enchant", "Hand-to-hand", "Heavy Armor", "Illusion", "Light Armor", "Long Blade", "Marksman", "Medium Armor", "Mercantile", "Mysticism", "Restoration", "Security", "Short Blade", "Sneak", "Spear", "Speechcraft", "Unarmored"]
     sex_list = ["Male", "Female"]
 
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    #could have parameters for all, but why generate a character when you know what you want?
+    #stick to sex and race parameters
+    if 'race' in keyed_args:
+        if keyed_args['race'] in race_list:
+            chosen_race = keyed_args['race']
+        else:
+            await message.channel.send(f"Cant recognize \'{keyed_args['race']}\'. Choosing race at random")
+            chosen_race = random.choice(race_list)
+    else:
+        chosen_race = random.choice(race_list)
+    
+    if 'sex' in keyed_args:
+        if keyed_args['sex'] in sex_list:
+            chosen_sex = keyed_args['sex']
+        else:
+            await message.channel.send(f"Cant recognize \'{keyed_args['sex']}\'. Choosing sex at random")
+            chosen_sex = random.choice(sex_list)
+    else:
+        chosen_sex = random.choice(sex_list)
     # Choose 1 specialization
     chosen_specialization = random.choice(specialization_list)
-    chosen_sex = random.choice(sex_list)
-
+    
     # Choose 2 favored attributes (cannot choose the same twice)
     chosen_favored_attributes = random.sample(favored_attributes_list, 2)
-
-    # Choose 1 race
-    chosen_race = random.choice(race_list)
 
     # Choose 5 major skills and 5 minor skills (no duplicates)
     chosen_skills = random.sample(skills_list, 10)
@@ -268,7 +282,7 @@ async def command_morrowgen(args, message,commandList):
     out = "```\n"
     out = out + f"Race: {chosen_race}\n\n"
     out = out + f"Sex: {chosen_sex}\n\n"
-    out = out + f"Name: {chosen_name} (or visit \"https://modding-openmw.com/name-generator/\")\n\n"
+    out = out + f"Name: {chosen_name}\n\n"
     out = out + f"Specialization: {chosen_specialization}\n\n"
     out = out + f"Favored Attributes: {chosen_favored_attributes}\n\n"
     out = out + f"Major Skills: {chosen_major_skills}\n\n"
@@ -403,18 +417,20 @@ async def command_man(args, message, commandList):
     if args[1] == 'morrowgen':
         await message.channel.send(
             "**$morrowgen Command**\n"
-            "Usage: `$morrowgen`\n"
+            "Usage: `$morrowgen [options]`\n"
             "Description: Generates a random character for the game Morrowind with various attributes and skills.\n"
-            "Options: Takes no arguments. (for now)\n"
+            "Options:\n"
+            "- `race=<race>`: Specifies the race of the character. If not specified, a random race is chosen.\n"
+            "- `sex=<sex>`: Specifies the sex of the character ('Male' or 'Female'). If not specified, a random sex is chosen.\n"
             "Example:\n"
             "```\n"
-            "$morrowgen\n"
+            "$morrowgen race=Dunmer sex=Female\n"
             "```\n"
-            "This command generates a random Morrowind character with attributes such as race, sex, specialization, favored attributes, major skills, minor skills, and birthsign."
+            "This command generates a random female Dunmer character with randomly selected attributes such as specialization, favored attributes, major skills, minor skills, and birthsign."
         )
         return
-
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
+    return
 
 # Command switcher
 command_switch = {
