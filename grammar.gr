@@ -49,8 +49,8 @@
 
 <ter_argonian_surname> ::= "" ;
 
-<nter_female_argonian_name> ::= <ter_female_argonian_first_name_imperial> ;
-<nter_male_argonian_name> ::= <ter_male_argonian_first_name_imperial> ;
+<nter_female_argonian_name> ::= <ter_female_argonian_first_name_jel> | <ter_female_argonian_first_name_imperial> ;
+<nter_male_argonian_name> ::= <ter_male_argonian_first_name_jel> | <ter_male_argonian_first_name_imperial> ;
 
 <start_argonian_name> ::= <nter_female_argonian_name> | <nter_male_argonian_name> ;
 
@@ -432,8 +432,8 @@
     "Rulician" | "Saccus" | "Siruliulus" | "Talanian" | "Truptor" | "Tunifus" | "Urgelian" | "Urgusiso" |
     "Uulentanus" | "Vandacia" | "Vant" | "Varian" | "Varo" | "Varro" | "Velvus" | "Viciulus" | "Vinipter" | "Vunnis" ;
 
-<nter_female_imperial_surname> ::= <ter_imperial_surname_root>a ;
-<nter_male_imperial_surname> ::= <ter_imperial_surname_root>us ;
+<nter_female_imperial_surname> ::= <ter_imperial_surname_root>a | <ter_imperial_surname_unisex> ;
+<nter_male_imperial_surname> ::= <ter_imperial_surname_root>us | <ter_imperial_surname_unisex> ;
 
 
 <nter_imperial_surname> ::= <nter_female_imperial_surname> | <nter_male_imperial_surname> ;

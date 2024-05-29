@@ -261,33 +261,23 @@ async def command_morrowgen(args, message,commandList):
         #sometimes take ashlander name
         if random.choice([True, False]):
             chosen_race = "Dunmer - Ashlander"
-            nonT = g.find_nonterminal(chosen_sex.lower(),'ashlander')
-            chosen_name=g.expand_nonterminal(nonT)
+            chosen_name = g.generate_name(chosen_sex.lower(),'ashlander')
         else:
-            nonT = g.find_nonterminal(chosen_sex.lower(),chosen_race.lower())
-            chosen_name=g.expand_nonterminal(nonT)
+            chosen_name = g.generate_name(chosen_sex.lower(),chosen_race.lower())
     else:
-        nonT = g.find_nonterminal(chosen_sex.lower(),chosen_race.lower())
-        chosen_name=g.expand_nonterminal(nonT)
+        chosen_name = g.generate_name(chosen_sex.lower(),chosen_race.lower())
     
-    #name_list = pd.read_csv('morrowgen.names')
-    #filtered_data = name_list[(name_list['race'] == chosen_race) & (name_list['gender'] == chosen_sex.lower())]
-    #first_name = filtered_data.sample(n=1).iloc[0]['name']
-    #if random.choice([True, False]):
-    #    last_name = filtered_data.sample(n=1).iloc[0]['name']
-    #    chosen_name = f"{first_name} {last_name}"
-    #else:
-    #    chosen_name = first_name
 
     out = "```\n"
+    out = out + f"Name: {chosen_name}\n\n"
     out = out + f"Race: {chosen_race}\n\n"
     out = out + f"Sex: {chosen_sex}\n\n"
-    out = out + f"Name: {chosen_name}\n\n"
+    out = out + f"Birthsign: {chosen_birthsign}\n\n"
     out = out + f"Specialization: {chosen_specialization}\n\n"
     out = out + f"Favored Attributes: {chosen_favored_attributes}\n\n"
     out = out + f"Major Skills: {chosen_major_skills}\n\n"
-    out = out + f"Minor Skills: {chosen_minor_skills}\n\n"
-    out = out + f"Birthsign: {chosen_birthsign}\n```"
+    out = out + f"Minor Skills: {chosen_minor_skills}"
+    out = out + f"\n```"
     await message.channel.send(out)
 
 async def command_commands(args, message, commandList):
