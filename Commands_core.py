@@ -16,14 +16,19 @@ import shlex
 import random
 import pandas as pd
 import grammar
+import huffman 
+import heapq
+from collections import defaultdict, namedtuple
 
 
+## TODO WRAPPER TO CATCH LONG MESSAGES AND SPLIT THEM / SEND THEM AS .TXT FILE
 # Core function
 async def callCommand(message, prefix):
     # REGISTER COMMANDS HERE
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
-        f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen"
+        f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
+        f"{prefix}hufftree"
     ]
     
     # PARSING COMMANDS HERE
@@ -280,6 +285,33 @@ async def command_morrowgen(args, message,commandList):
     out = out + f"\n```"
     await message.channel.send(out)
 
+async def command_hufftree(args,message,commandList):
+    text = "Default"
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    if 'text' in keyed_args:
+        text = keyed_args['text'];
+    
+    frequency_map = defaultdict(int)
+    for c in text:
+        frequency_map[c] += 1
+
+    pq = []
+    for character, frequency in frequency_map.items():
+        heapq.heappush(pq, huffman.HuffmanNode(character, frequency))
+
+    while len(pq) > 1:
+        left = heapq.heappop(pq)
+        right = heapq.heappop(pq)
+        combined_node = huffman.HuffmanNode('#', left.frequency + right.frequency)
+        combined_node.left = left
+        combined_node.right = right
+        heapq.heappush(pq, combined_node)
+
+    root = heapq.heappop(pq)
+    tree = huffman.generate_huffman_tree_string(root)
+    await message.channel.send(f"```\n{tree}\n```")
+    
+
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -430,6 +462,7 @@ command_switch = {
     'sort': command_sort,
     'roll': command_roll,
     'morrowgen': command_morrowgen,
+    'hufftree' : command_hufftree,
     'commands': command_commands,
     'man': command_man,
 }
