@@ -19,6 +19,7 @@ import grammar
 import huffman 
 import heapq
 from collections import defaultdict, namedtuple
+import python_weather
 
 # Core function
 async def callCommand(message, prefix):
@@ -26,7 +27,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree"
+        f"{prefix}hufftree", f"{prefix}weather"
     ]
     
     # PARSING COMMANDS HERE
@@ -333,6 +334,17 @@ async def command_hufftree(args,message,commandList):
     tree = huffman.generate_huffman_tree_string(root)
     await wrapperSend(message,tree,'mono')
     
+async def command_weather(args, message, commandList):
+    place = 'Prague'
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    if 'place' in keyed_args:
+        place = keyed_args['place']
+    async with python_weather.Client(unit=python_weather.METRIC) as client:
+    # fetch a weather forecast from a city
+        weather = await client.get(place)
+        weather_string = f"```\nWeather in {weather.location}:\n{weather.description}\nTemperature: {weather.temperature} Celsius (Feels like {weather.feels_like} Celsius)\nHumidity: {weather.humidity}%\nPressure: {weather.pressure}hPa\n```"
+        await message.channel.send(weather_string);
+    return
 
 async def command_commands(args, message, commandList):
     text = '```\n'
@@ -473,6 +485,28 @@ async def command_man(args, message, commandList):
             "This command generates a random female Dunmer character with randomly selected attributes such as specialization, favored attributes, major skills, minor skills, and birthsign."
         )
         return
+
+    if args[1] == 'hufftree':
+        await message.channel.send(
+            "**$hufftree Command**\n"
+            "Usage: `$hufftree [options]`\n"
+            "Description: Generates a Huffman tree for the given text.\n"
+            "Options:\n"
+            "- `text=<string>`: Specifies the text to generate the Huffman tree for. If not specified, 'default' is used. \n"
+        )
+        return
+
+
+    if args[1] == 'weather':
+        await message.channel.send(
+            "**$weather Command**\n"
+            "Usage: `$weather [options]`\n"
+            "Description: Returns the weather information for a specified location.\n"
+            "Options:\n"
+            "- `location=<location>`: Specifies the location to get the weather for. If not specified, 'Prague' is used. If an uknown place it specified, defaults to 'Thot Not'(LMAO)\n"
+        )
+        return
+
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
     return
 
@@ -486,6 +520,7 @@ command_switch = {
     'morrowgen': command_morrowgen,
     'hufftree' : command_hufftree,
     'commands': command_commands,
+    'weather' : command_weather,
     'man': command_man,
 }
 
