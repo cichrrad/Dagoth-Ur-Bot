@@ -20,8 +20,6 @@ import huffman
 import heapq
 from collections import defaultdict, namedtuple
 
-
-## TODO WRAPPER TO CATCH LONG MESSAGES AND SPLIT THEM / SEND THEM AS .TXT FILE
 # Core function
 async def callCommand(message, prefix):
     # REGISTER COMMANDS HERE
@@ -44,6 +42,30 @@ async def callCommand(message, prefix):
     # Failed to identify
     await message.channel.send(f'I dont recognize \"' + str(args[0]) + '\" as a command.')
     return
+
+import re
+
+async def wrapperSend(message, contents, mode='normal'):
+    max_length = 1900
+    parts = []
+
+    # Split contents by the maximum length, attempting to end at a newline
+    while len(contents) > max_length:
+        split_at = max_length
+        if '\n' in contents[:max_length]:
+            split_at = contents.rfind('\n', 0, max_length) + 1
+        parts.append(contents[:split_at])
+        contents = contents[split_at:]
+
+    parts.append(contents)  # Append the remainder of the contents
+    total_parts = len(parts)
+    
+    for i, part in enumerate(parts, start=1):
+        #header = f"PART [{i}/{total_parts}]=======\n"
+        if mode == 'mono':
+            part = f"```\n{part}\n```"
+        await message.channel.send(part)
+
 
 # Separate command functions
 async def command_ping(args, message):
@@ -309,7 +331,7 @@ async def command_hufftree(args,message,commandList):
 
     root = heapq.heappop(pq)
     tree = huffman.generate_huffman_tree_string(root)
-    await message.channel.send(f"```\n{tree}\n```")
+    await wrapperSend(message,tree,'mono')
     
 
 async def command_commands(args, message, commandList):
