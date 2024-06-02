@@ -27,7 +27,10 @@ def generate_huffman_tree_string(root, prefix="", is_left=True):
     result.append(prefix)
     result.append("├──" if is_left else "└──")
     if root.character != '#':
-        result.append(f"'{root.character}' ({root.frequency})\n")
+        if root.character == '\n':
+            result.append(f"'\\n' ({root.frequency})\n")
+        else:    
+            result.append(f"'{root.character}' ({root.frequency})\n")
     else:
         result.append(f"# ({root.frequency})\n")
     result.append(generate_huffman_tree_string(root.left, prefix + ("│   " if is_left else "    "), True))
