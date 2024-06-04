@@ -7,6 +7,7 @@ import discord
 import requests
 import pyfiglet
 import io
+import os
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import numpy as np
@@ -20,6 +21,8 @@ import huffman
 import heapq
 from collections import defaultdict, namedtuple
 import python_weather
+import qrcode
+
 
 # Core function
 async def callCommand(message, prefix):
@@ -27,7 +30,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr"
     ]
     
     # PARSING COMMANDS HERE
@@ -217,7 +220,7 @@ async def command_roll(args, message,commandList):
                 raise ValueError(f"Cannot roll a non-positive sided die (duh). Using default = {sides}")
             else:
                 sides = parsedSides
-        except ValueError:
+        except ValueError:   
             await message.channel.send(f"Invalid input for 'sides': {keyed_args['sides']}. Using default = {sides}")
     
     if 'count' in keyed_args:
@@ -346,6 +349,19 @@ async def command_weather(args, message, commandList):
         await message.channel.send(weather_string);
     return
 
+async def command_qr(args, message, commandList):
+    text = 'Default'
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    if 'text' in keyed_args:
+        text = keyed_args['text']
+    qr = qrcode.QRCode()
+    qr.add_data(str(text))
+    img = qr.make_image()
+    img.save('qr.png')
+    await message.channel.send(file=discord.File('qr.png'))
+    os.remove('qr.png')
+    return
+    
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -353,6 +369,7 @@ async def command_commands(args, message, commandList):
         text = text + '\n'
     text = text + '```'
     await message.channel.send(text)
+    return
 
 async def command_man(args, message, commandList):
     if len(args) == 1 or args[1] == 'man':
@@ -507,6 +524,16 @@ async def command_man(args, message, commandList):
         )
         return
 
+    if args[1] == 'qr':
+        await message.channel.send(
+            "**$qr Command**\n"
+            "Usage: `$qr [options]`\n"
+            "Description: Generates a QR code with the specified text.\n"
+            "Options:\n"
+            "- `text=<string>`: Specifies the text to encode. If not specified, 'Default' is used. \n"
+        )
+        return
+
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
     return
 
@@ -522,6 +549,7 @@ command_switch = {
     'commands': command_commands,
     'weather' : command_weather,
     'man': command_man,
+    'qr' : command_qr
 }
 
 async def execute(command, args, message, prefix, commandList):
