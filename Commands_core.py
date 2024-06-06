@@ -70,6 +70,8 @@ async def wrapperSend(message, contents, mode='normal'):
         #header = f"PART [{i}/{total_parts}]=======\n"
         if mode == 'mono':
             part = f"```\n{part}\n```"
+        if mode == 'ansi':
+            part= f"```ansi\n{part}\n```"
         await message.channel.send(part)
 
 
@@ -367,13 +369,19 @@ async def command_qr(args, message, commandList):
 async def command_asciiart(args, message, commandList):
     
     width = 111
+    #colored = True
     keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
     if 'width' in keyed_args:
         try:
             width = int(keyed_args['width'])
         except ValueError:
             await message.channel.send(f"Invalid input for 'width': {keyed_args['width']}. Using default = {width}")
-    
+    #if 'colored' in keyed_args:
+    #    try:
+    #        colored = bool(keyed_args['colored'])
+    #    except ValueError:
+    #        await message.channel.send(f"Invalid input for 'colored': {keyed_args['colored']}. Using default = {colored}")
+
     picture_url = str(message.attachments[0].url)
     page = requests.get(picture_url)
 
@@ -383,9 +391,11 @@ async def command_asciiart(args, message, commandList):
     with open(f_name, 'wb') as f:
         f.write(page.content)
     my_art = AsciiArt.from_image(f_name)
-    #await message.channel.send(f"```\n{my_art.to_terminal(columns=111, monochrome=True)}\n```")
     os.remove(f"{f_name}")
-    await wrapperSend(message,(str(my_art.to_terminal(columns=width, monochrome=True))).replace('`','ˋ'),'mono')
+    asc = my_art.to_ascii(columns=width, monochrome= True)
+    #await message.channel.send(f"```\n{my_art.to_terminal(columns=111, monochrome=True)}\n```")
+    # TODO tweak color output (ansi sucks and barely works)
+    await wrapperSend(message,(str(asc)).replace('`','ˋ'),'ansi')
     return
 
 async def command_commands(args, message, commandList):
