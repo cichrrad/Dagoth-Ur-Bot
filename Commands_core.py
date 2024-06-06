@@ -22,6 +22,8 @@ import heapq
 from collections import defaultdict, namedtuple
 import python_weather
 import qrcode
+import urllib.request
+from ascii_magic import AsciiArt
 
 
 # Core function
@@ -30,7 +32,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart"
     ]
     
     # PARSING COMMANDS HERE
@@ -72,7 +74,7 @@ async def wrapperSend(message, contents, mode='normal'):
 
 
 # Separate command functions
-async def command_ping(args, message):
+async def command_ping(args, message, commandList):
     await message.channel.send('**Pong!**')
 
 async def command_plot(args, message, commandList):
@@ -361,7 +363,31 @@ async def command_qr(args, message, commandList):
     await message.channel.send(file=discord.File('qr.png'))
     os.remove('qr.png')
     return
+
+async def command_asciiart(args, message, commandList):
     
+    width = 111
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    if 'width' in keyed_args:
+        try:
+            width = int(keyed_args['width'])
+        except ValueError:
+            await message.channel.send(f"Invalid input for 'width': {keyed_args['width']}. Using default = {width}")
+    
+    picture_url = str(message.attachments[0].url)
+    page = requests.get(picture_url)
+
+    f_ext = os.path.splitext(picture_url)[-1]
+    f_name = 'img{}'.format(f_ext)
+    f_name = f_name + ".png"
+    with open(f_name, 'wb') as f:
+        f.write(page.content)
+    my_art = AsciiArt.from_image(f_name)
+    #await message.channel.send(f"```\n{my_art.to_terminal(columns=111, monochrome=True)}\n```")
+    os.remove(f"{f_name}")
+    await wrapperSend(message,(str(my_art.to_terminal(columns=width, monochrome=True))).replace('`','ˋ'),'mono')
+    return
+
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -534,6 +560,17 @@ async def command_man(args, message, commandList):
         )
         return
 
+
+    if args[1] == 'asciiart':
+        await message.channel.send(
+            "**$asciiart Command**\n"
+            "Usage: `$asciiart [options] [image]`\n"
+            "Description: Generates ASCII art of attached imaged (via paste or '+' button).\n"
+            "Options:\n"
+            "- `width=<integer>`: Specifies the width of the image. Default is 111. If larger number is selected, one may need to zoom out discord to see the image clearly. \n"
+        )
+        return
+
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
     return
 
@@ -549,7 +586,8 @@ command_switch = {
     'commands': command_commands,
     'weather' : command_weather,
     'man': command_man,
-    'qr' : command_qr
+    'qr' : command_qr,
+    'asciiart' : command_asciiart
 }
 
 async def execute(command, args, message, prefix, commandList):
