@@ -245,7 +245,8 @@ async def command_roll(args, message,commandList):
         rolls = rolls + f"[{str(rolled)}]\n"
     avg = _sum / count
     avg = round(avg, 4)
-    await message.channel.send(f"```\n{rolls}==========================\nAverage value = {str(avg)}\n==========================```")
+    await wrapperSend(message,(f"\n{rolls}==========================\nAverage value = {str(avg)}\n=========================="),mode='mono')
+    #await message.channel.send(f"```\n{rolls}==========================\nAverage value = {str(avg)}\n==========================```")
 
 async def command_morrowgen(args, message,commandList):
     race_list = ["Argonian", "Breton", "Dunmer", "Altmer", "Imperial", "Khajiit", "Nord", "Orc", "Redguard", "Bosmer"]
@@ -393,6 +394,8 @@ async def command_asciiart(args, message, commandList):
     my_art = AsciiArt.from_image(f_name)
     os.remove(f"{f_name}")
     asc = my_art.to_ascii(columns=width, monochrome= True)
+    debug_asc = my_art.to_ascii(columns=width, monochrome= False)
+    print(debug_asc)
     #await message.channel.send(f"```\n{my_art.to_terminal(columns=111, monochrome=True)}\n```")
     # TODO tweak color output (ansi sucks and barely works)
     await wrapperSend(message,(str(asc)).replace('`','ˋ'),'ansi')
