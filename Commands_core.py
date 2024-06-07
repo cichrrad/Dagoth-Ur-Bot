@@ -24,6 +24,7 @@ import python_weather
 import qrcode
 import urllib.request
 from ascii_magic import AsciiArt
+import asyncio
 
 
 # Core function
@@ -32,7 +33,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer"
     ]
     
     # PARSING COMMANDS HERE
@@ -401,6 +402,37 @@ async def command_asciiart(args, message, commandList):
     await wrapperSend(message,(str(asc)).replace('`','ˋ'),'ansi')
     return
 
+async def command_timer(args, message, commandList):
+    
+    # TODO make this spawn a thread and run it in the background
+    
+    seconds = 10
+    minutes = 0
+    hours = 0
+    silent = False
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    try:
+        seconds = int(keyed_args['seconds']) if 'seconds' in keyed_args else 0
+        minutes = int(keyed_args['minutes']) if 'minutes' in keyed_args else 0
+        hours = int(keyed_args['hours']) if 'hours' in keyed_args else 0
+        if 'silent' in keyed_args:
+            if keyed_args['silent'].lower() == 'true' or keyed_args['silent'].lower() == 'yes' or keyed_args['silent'].lower() == '1':
+                silent = True
+        if seconds < 0 or minutes < 0 or hours < 0:
+            raise ValueError
+        countdown = seconds + minutes*60 + hours*3600
+    except ValueError:
+        await message.channel.send(f"Invalid input for 'seconds'/'minutes'/'hours': {keyed_args['seconds']}/{keyed_args['minutes']}/{keyed_args['hours']}. Positive integers only.")
+        return
+    
+    msg = await message.channel.send(f"Timer started. Duration is {countdown} seconds.")
+    while countdown > 0:
+        if silent is not True:
+            await message.channel.send(f"{countdown} seconds", delete_after=1)
+        countdown = countdown - 1
+        await asyncio.sleep(1)
+    await msg.reply("Done!") 
+
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -584,6 +616,19 @@ async def command_man(args, message, commandList):
         )
         return
 
+    if args[1] == 'timer':
+        await message.channel.send(
+            "**$timer Command**\n"
+            "Usage: `$timer [options]`\n"
+            "Description: Starts a timer for the specified amount of time. \n"
+            "Options:\n"
+            "- `seconds=<integer>`: Specifies the amount of seconds to count down. \n"
+            "- `minutes=<integer>`: Specifies the amount of minutes to count down. \n"
+            "- `hours=<integer>`: Specifies the amount of hours to count down. \n"
+            "- `silent=<boolean>`: Specifies whether the timer should be silent. Default is false. \n"   
+        )
+        return
+
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
     return
 
@@ -600,7 +645,8 @@ command_switch = {
     'weather' : command_weather,
     'man': command_man,
     'qr' : command_qr,
-    'asciiart' : command_asciiart
+    'asciiart' : command_asciiart,
+    'timer' : command_timer
 }
 
 async def execute(command, args, message, prefix, commandList):
