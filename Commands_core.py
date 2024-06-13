@@ -434,11 +434,37 @@ async def command_timer(args, message, commandList):
     await msg.reply("Done!") 
 
 async def command_todo(args, message, commandList):
+
+    # TODO GO OVER AND DOOFUS-PROOF THIS
+    # ALSO CONSIDER MAYBE YOU KNOW... NOT SAVING THIS AS A PLAIN TXT ?
+
     author = message.author
+    keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    
     todo_file = os.path.join('.todo', f'todo_{author}')
     if not os.path.exists(todo_file):
+        await message.channel.send(f"**{author}**s list not found ==> created one")
         with open(todo_file, 'w') as f:
             pass
+    else:
+        if 'add' in keyed_args:
+            with open(todo_file, 'a') as f:
+                f.write(f"{keyed_args['add']}\n")
+                await message.channel.send(f"**{author}** added \"{keyed_args['add']}\" to his **TODO** list")
+        if 'list' in keyed_args:
+            if keyed_args['list'].lower() == 'true' or keyed_args['list'].lower() == 'yes' or keyed_args['list'].lower() == '1':
+                i = 1
+                text = ''
+                for line in open(todo_file, 'r'):
+                    text += f"{i}. {line}"
+                    i += 1
+                await message.channel.send(f"```\n{text}\n```")
+                return
+        if 'wipe' in keyed_args:
+            if keyed_args['wipe'].lower() == 'true' or keyed_args['wipe'].lower() == 'yes' or keyed_args['wipe'].lower() == '1':
+                os.remove(todo_file)
+                await message.channel.send(f"**{author}**s list wiped")
+                return
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
