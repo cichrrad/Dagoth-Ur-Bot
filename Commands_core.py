@@ -33,7 +33,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer",f"{prefix}todo"
     ]
     
     # PARSING COMMANDS HERE
@@ -405,7 +405,7 @@ async def command_asciiart(args, message, commandList):
 async def command_timer(args, message, commandList):
     
     # TODO make this spawn a thread and run it in the background
-    
+    await message.channel.send("```\nCURRENTLY WORK IN PROGRESS, USE AT YOUR OWN RISK - IT WILL STALL THE BOT FOR THE DURATION OF THE TIMER\n```")
     seconds = 10
     minutes = 0
     hours = 0
@@ -433,6 +433,12 @@ async def command_timer(args, message, commandList):
         await asyncio.sleep(1)
     await msg.reply("Done!") 
 
+async def command_todo(args, message, commandList):
+    author = message.author
+    todo_file = os.path.join('.todo', f'todo_{author}')
+    if not os.path.exists(todo_file):
+        with open(todo_file, 'w') as f:
+            pass
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -646,7 +652,8 @@ command_switch = {
     'man': command_man,
     'qr' : command_qr,
     'asciiart' : command_asciiart,
-    'timer' : command_timer
+    'timer' : command_timer,
+    'todo' : command_todo
 }
 
 async def execute(command, args, message, prefix, commandList):
