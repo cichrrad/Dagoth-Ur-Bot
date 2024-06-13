@@ -25,6 +25,7 @@ import qrcode
 import urllib.request
 from ascii_magic import AsciiArt
 import asyncio
+import url_stuff
 
 
 # Core function
@@ -33,7 +34,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer",f"{prefix}todo"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer",f"{prefix}todo",f"{prefix}deals"
     ]
     
     # PARSING COMMANDS HERE
@@ -465,6 +466,38 @@ async def command_todo(args, message, commandList):
                 os.remove(todo_file)
                 await message.channel.send(f"**{author}**s list wiped")
                 return
+        if 'remove' in keyed_args:
+            try:
+                line = int(keyed_args['remove'])
+                with open(todo_file, 'r') as f:
+                    lines = f.readlines()
+                with open(todo_file, 'w') as f:
+                    for i in range(len(lines)):
+                        if i != line - 1:
+                            f.write(lines[i])
+                await message.channel.send(f"**{author}** removed {keyed_args['remove']} from his **TODO** list")
+                return
+            except (ValueError, IndexError):
+                await message.channel.send(f"Invalid input for 'remove': {keyed_args['remove']}. Positive integers only in range of the list.")
+                return
+        return
+
+async def command_deals(args, message, commandList):
+    number = 5
+    keyed_args={item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    if 'number' in keyed_args:
+        try:
+            number = int(keyed_args['number'])
+        except ValueError:
+            await message.channel.send(f"Invalid input for 'number': {keyed_args['number']}. Positive integers only.")
+            return
+    if number < 1:
+        await message.channel.send(f"Invalid input for 'number': {keyed_args['number']}. Positive integers only.")
+        return
+    text = url_stuff.fetch_deals(number)
+    await wrapperSend(message,text)
+    return
+
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -661,6 +694,29 @@ async def command_man(args, message, commandList):
         )
         return
 
+    if args[1] == 'todo':
+        await message.channel.send(
+            "**$todo Command**\n"
+            "Usage: `$todo [options]`\n"
+            "Description: Adds a task to the todo list. \n"
+            "Options:\n"
+            "- `add=<string>`: Specifies the task to add to the todo list. \n"
+            "- `list=<boolean>`: Specifies whether the todo list should be listed. Default is false. \n"
+            "- `wipe=<boolean>`: Specifies whether the todo list should be wiped. Default is false. \n"
+            "- `remove=<string>`: Specifies the task to remove from the todo list. \n"
+        )
+        return
+
+    if args[1] == 'deals':
+        await message.channel.send(
+            "**$deals Command**\n"
+            "Usage: `$deals [options]`\n"
+            "Description: Fetches the top deals from gg.deals. \n"
+            "Options:\n"
+            "- `number=<integer>`: Specifies the number of games to fetch. Default is 5. \n"
+        )
+        return
+
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
     return
 
@@ -679,7 +735,8 @@ command_switch = {
     'qr' : command_qr,
     'asciiart' : command_asciiart,
     'timer' : command_timer,
-    'todo' : command_todo
+    'todo' : command_todo,
+    'deals' : command_deals
 }
 
 async def execute(command, args, message, prefix, commandList):
