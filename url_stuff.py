@@ -24,9 +24,12 @@ def fetch_deals(number_of_games=5):
             
             for item in game_items:
                 game_info = item.find('a', class_='game-info-title')
+                store_link = item.find('a', class_='d-flex flex-align-center flex-justify-center label-with-arrows action-btn-full-box action-btn cta-label-desktop with-arrows action-ext')
                 if game_info:
+
                     game_name = game_info.get('data-title-auto-hide', 'No title')
                     game_link = game_info.get('href', 'No link')
+                    store_link = store_link.get('href', 'No link')
                     full_link = f"https://gg.deals{game_link}"
                     
                     price_span = item.find('span', class_='price-inner game-price-new')
@@ -35,6 +38,7 @@ def fetch_deals(number_of_games=5):
                     games.append({
                         'name': game_name,
                         'link': full_link,
+                        'store_link': store_link,
                         'price': game_price
                     })
             
@@ -43,7 +47,8 @@ def fetch_deals(number_of_games=5):
             for i, game in enumerate(games, start=1):
                 message += f"**Game {i}:**\n"
                 message += f"**Name:** {game['name']}\n"
-                message += f"**Link:** {game['link']}\n"
+                #message += f"**Link:** {game['link']}\n"
+                message += f"**Store Link:** https://gg.deals{game['store_link']}\n"
                 message += f"**Price:** {game['price']}\n\n"
             
             return message

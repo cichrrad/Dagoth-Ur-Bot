@@ -16,8 +16,8 @@ from translate import Translator
 import shlex 
 import random
 import pandas as pd
-import grammar
-import huffman 
+import py_stuff.grammar as grammar
+import py_stuff.huffman as huffman  
 import heapq
 from collections import defaultdict, namedtuple
 import python_weather
@@ -26,6 +26,7 @@ import urllib.request
 from ascii_magic import AsciiArt
 import asyncio
 import url_stuff
+import threading
 
 
 # Core function
@@ -292,7 +293,7 @@ async def command_morrowgen(args, message,commandList):
     # Choose 1 birthsign
     chosen_birthsign = random.choice(birthsign_list)
 
-    g = grammar.Grammar('grammar.gr')
+    g = grammar.Grammar('py_stuff/grammar.gr')
     g.parseGrammar()
     chosen_name = 'none'
     if chosen_race == 'Dunmer':
@@ -404,35 +405,38 @@ async def command_asciiart(args, message, commandList):
     return
 
 async def command_timer(args, message, commandList):
+        
+    async def timer_task(countdown, message, silent=True, msg=message):
+        while countdown > 0:
+            if not silent:
+                await message.channel.send(f"{countdown} seconds left", delete_after=1)
+            countdown -= 1
+            await asyncio.sleep(1)
+        
+        await msg.reply("Done!") 
+        
     
-    # TODO make this spawn a thread and run it in the background
-    await message.channel.send("```\nCURRENTLY WORK IN PROGRESS, USE AT YOUR OWN RISK - IT WILL STALL THE BOT FOR THE DURATION OF THE TIMER\n```")
     seconds = 10
     minutes = 0
     hours = 0
-    silent = False
+    silent = True
     keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
     try:
         seconds = int(keyed_args['seconds']) if 'seconds' in keyed_args else 0
         minutes = int(keyed_args['minutes']) if 'minutes' in keyed_args else 0
         hours = int(keyed_args['hours']) if 'hours' in keyed_args else 0
         if 'silent' in keyed_args:
-            if keyed_args['silent'].lower() == 'true' or keyed_args['silent'].lower() == 'yes' or keyed_args['silent'].lower() == '1':
-                silent = True
+            if keyed_args['silent'].lower() in ['false', 'no', '0']:
+                silent = False
         if seconds < 0 or minutes < 0 or hours < 0:
             raise ValueError
-        countdown = seconds + minutes*60 + hours*3600
+        countdown = seconds + minutes * 60 + hours * 3600
     except ValueError:
-        await message.channel.send(f"Invalid input for 'seconds'/'minutes'/'hours': {keyed_args['seconds']}/{keyed_args['minutes']}/{keyed_args['hours']}. Positive integers only.")
+        await message.channel.send(f"Invalid input for 'seconds'/'minutes'/'hours': {keyed_args.get('seconds')}/{keyed_args.get('minutes')}/{keyed_args.get('hours')}. Positive integers only.")
         return
     
     msg = await message.channel.send(f"Timer started. Duration is {countdown} seconds.")
-    while countdown > 0:
-        if silent is not True:
-            await message.channel.send(f"{countdown} seconds", delete_after=1)
-        countdown = countdown - 1
-        await asyncio.sleep(1)
-    await msg.reply("Done!") 
+    asyncio.create_task(timer_task(countdown, message, silent, msg))
 
 async def command_todo(args, message, commandList):
 
@@ -690,7 +694,7 @@ async def command_man(args, message, commandList):
             "- `seconds=<integer>`: Specifies the amount of seconds to count down. \n"
             "- `minutes=<integer>`: Specifies the amount of minutes to count down. \n"
             "- `hours=<integer>`: Specifies the amount of hours to count down. \n"
-            "- `silent=<boolean>`: Specifies whether the timer should be silent. Default is false. \n"   
+            "- `silent=<boolean>`: Specifies whether the timer should be silent. Default is true. \n"   
         )
         return
 
