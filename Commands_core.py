@@ -25,8 +25,9 @@ import qrcode
 import urllib.request
 from ascii_magic import AsciiArt
 import asyncio
-import url_stuff
+import py_stuff.url_stuff as url_stuff
 import threading
+from gnews import GNews
 
 
 # Core function
@@ -35,7 +36,7 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer",f"{prefix}todo",f"{prefix}deals"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer",f"{prefix}todo",f"{prefix}deals",f"{prefix}news"
     ]
     
     # PARSING COMMANDS HERE
@@ -502,6 +503,19 @@ async def command_deals(args, message, commandList):
     await wrapperSend(message,text)
     return
 
+async def command_news(args, message, commandList):
+    
+    # TODO put in a thread or something ?
+
+    g = GNews()
+    g.exclude_websites = ['yahoo.com', 'cnn.com']
+    g.max_results = 5
+    news = g.get_top_news()
+    text = ''
+    for article in news:
+        text += f'```\n{article["title"]}\nDate: {article["published date"]}\n```\nLink: {article["url"]}\n\n'
+    await wrapperSend(message,text) 
+
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -740,7 +754,8 @@ command_switch = {
     'asciiart' : command_asciiart,
     'timer' : command_timer,
     'todo' : command_todo,
-    'deals' : command_deals
+    'deals' : command_deals,
+    'news' : command_news
 }
 
 async def execute(command, args, message, prefix, commandList):
