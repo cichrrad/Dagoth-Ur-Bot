@@ -48,7 +48,7 @@ def fetch_deals(number_of_games=5):
                 message += f"**Game {i}:**\n"
                 message += f"**Name:** {game['name']}\n"
                 #message += f"**Link:** {game['link']}\n"
-                message += f"**Store Link:** https://gg.deals{game['store_link']}\n"
+                message += f"**Store Link:** <https://gg.deals{game['store_link']}>\n"
                 message += f"**Price:** {game['price']}\n\n"
             
             return message

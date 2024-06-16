@@ -499,6 +499,7 @@ async def command_deals(args, message, commandList):
     if number < 1:
         await message.channel.send(f"Invalid input for 'number': {keyed_args['number']}. Positive integers only.")
         return
+    await message.channel.send(f"Top {number} deals (fetched from gg.deals):")
     text = url_stuff.fetch_deals(number)
     await wrapperSend(message,text)
     return
@@ -513,7 +514,7 @@ async def command_news(args, message, commandList):
     news = g.get_top_news()
     text = ''
     for article in news:
-        text += f'```\n{article["title"]}\nDate: {article["published date"]}\n```\nLink: {article["url"]}\n\n'
+        text += f'```\n{article["title"]}\n\nDate: {article["published date"]}\n```\nLink: <{article["url"]}>\n\n'
     await wrapperSend(message,text) 
 
 async def command_commands(args, message, commandList):
