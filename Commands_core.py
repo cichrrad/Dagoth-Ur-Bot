@@ -28,6 +28,7 @@ import asyncio
 import py_stuff.url_stuff as url_stuff
 import threading
 from gnews import GNews
+import wikipedia
 
 
 # Core function
@@ -36,7 +37,8 @@ async def callCommand(message, prefix):
     commandList = [
         f"{prefix}ping", f"{prefix}plot", f"{prefix}man", f"{prefix}commands",
         f"{prefix}translate", f"{prefix}sort", f"{prefix}roll", f"{prefix}morrowgen",
-        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", f"{prefix}timer",f"{prefix}todo",f"{prefix}deals",f"{prefix}news"
+        f"{prefix}hufftree", f"{prefix}weather",f"{prefix}qr", f"{prefix}asciiart", 
+        f"{prefix}timer",f"{prefix}todo",f"{prefix}deals",f"{prefix}news",f"{prefix}wiki",
     ]
     
     # PARSING COMMANDS HERE
@@ -517,6 +519,15 @@ async def command_news(args, message, commandList):
         text += f'```\n{article["title"]}\n\nDate: {article["published date"]}\n```\nLink: <{article["url"]}>\n\n'
     await wrapperSend(message,text) 
 
+
+async def command_wiki(args, message, commandList):
+    term = 'Wikipedia'
+    keyed_args={item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}
+    if 'search' in keyed_args:
+        term = keyed_args['search']
+    msg = wikipedia.summary(term)
+    await wrapperSend(message,msg,mode='normal')
+    return
 async def command_commands(args, message, commandList):
     text = '```\n'
     for command in commandList:
@@ -675,7 +686,7 @@ async def command_man(args, message, commandList):
             "Usage: `$weather [options]`\n"
             "Description: Returns the weather information for a specified location.\n"
             "Options:\n"
-            "- `location=<location>`: Specifies the location to get the weather for. If not specified, 'Prague' is used. If an uknown place it specified, defaults to 'Thot Not'(LMAO)\n"
+            "- `place=<place>`: Specifies the location to get the weather for. If not specified, 'Prague' is used. If an uknown place it specified, defaults to 'Thot Not'(LMAO)\n"
         )
         return
 
@@ -736,6 +747,24 @@ async def command_man(args, message, commandList):
         )
         return
 
+    if args[1] == 'news':
+        await message.channel.send(
+            "**$news Command**\n"
+            "Usage: `$news`\n"
+            "Description: Shows top news from gnews. \n"
+        )
+        return
+
+    if args[1] == 'wiki':
+        await message.channel.send(
+            "**$wiki Command**\n"
+            "Usage: `$wiki [options]`\n"
+            "Description: Searches wikipedia. Prints summary. \n"
+            "Options:\n"
+            "- `search=<string>`: Specifies the search term. \n"
+        )
+        return
+
     await message.channel.send(f"I dont know what \"{args[1]}\" means.")
     return
 
@@ -756,7 +785,8 @@ command_switch = {
     'timer' : command_timer,
     'todo' : command_todo,
     'deals' : command_deals,
-    'news' : command_news
+    'news' : command_news,
+    'wiki' : command_wiki
 }
 
 async def execute(command, args, message, prefix, commandList):
