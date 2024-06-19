@@ -31,6 +31,10 @@ for file in os.listdir('./commands/'):
         command_names.append(file[2:-3])
 print(f"Commands found: {command_names}")
 
+# Save command_names to .command_names file
+with open('.command_names', 'w') as f:
+    f.write('\n'.join(command_names))
+
 bot_client = discord.Client(intents=intents)
 
 async def run_function_from_file(file_path: str, *args: Any) -> Any:

@@ -12,3 +12,4 @@ man_description =str(
 
 async def run(message):
     await message.channel.send('**Pong!**')
+    return
