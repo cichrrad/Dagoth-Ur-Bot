@@ -49,13 +49,15 @@ async def run_function_from_file(file_path: str, *args: Any) -> Any:
     
     module = importlib.util.module_from_spec(spec)
     sys.modules[module_name] = module
-    
     try:
         spec.loader.exec_module(module)
     except FileNotFoundError:
         raise FileNotFoundError(f"File not found: {file_path}")
     except Exception as e:
         raise ImportError(f"Could not import module from {file_path}: {e}")
+    
+    # man = getattr(module, 'man_description', None)
+    # print(man)
     
     # Get the 'run' function
     run_function = getattr(module, 'run', None)
