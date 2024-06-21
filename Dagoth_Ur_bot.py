@@ -88,6 +88,7 @@ async def on_message(message):
         if command in command_names:
             print(f"Found '{command}' in known commands...")
             try:
+                #each message command spawns a new task -> bot should be able to handle multiple commands at once
                 await asyncio.create_task(run_function_from_file(f'./commands/c_{command}.py', message))
                 print(f"Finished running '{command}'")
             except Exception as e:
