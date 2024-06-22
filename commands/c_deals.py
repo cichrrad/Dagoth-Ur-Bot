@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import commands.send_wrapper as sw
+
 man_description=str(
     "**$deals Command**\n"
     "Usage: `$deals <number>`\n"

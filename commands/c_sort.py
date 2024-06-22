@@ -43,6 +43,6 @@ async def run(message):
             #send list
             await sw.wrapperSend(message, ' , '.join(l), 'mono')
         else:
-            await message.channel.send("No list found.")
+            await message.channel.send("No list found. Try placing the list within brackets like so: (1,2,3,4,5).")
     else:
         await message.channel.send(man_description)
