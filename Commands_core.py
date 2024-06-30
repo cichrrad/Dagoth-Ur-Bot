@@ -177,6 +177,8 @@ async def command_plot(args, message, commandList):
     buf.seek(0)  # Rewind the buffer to the beginning so it can be read
     plt.close()  # Close the figure to free up memory
     await message.channel.send(file=discord.File(buf, 'plot.png'))
+    #delete the png
+    os.remove('plot.png')
 
 async def command_translate(args, message,commandList):
     keyed_args = {item.split('=')[0]: item.split('=')[1] for item in args[1:len(args)]}

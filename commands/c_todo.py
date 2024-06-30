@@ -11,7 +11,7 @@ man_description = str(
     "Description: Adds / removes / lists tasks from the todo list.\n"
     "Operations:\n"
     "- `+ <task>`: Adds a task to the todo list.\n"
-    "- `-[task endtry ID] <task>`: Removes a task from the todo list.\n"
+    "- `-[task endtry ID]`: Removes a task from the todo list.\n"
     "- `ls`: Lists all tasks in the todo list.\n"
     "- `wipe`: Removes all tasks from the todo list.\n"
 )
