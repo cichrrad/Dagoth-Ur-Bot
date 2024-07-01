@@ -11,7 +11,7 @@ import asyncio
 import os
 
 import discord
-import Commands_core as commands
+#import Commands_core as commands
 import configparser
 
 intents = discord.Intents.default()
