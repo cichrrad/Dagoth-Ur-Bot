@@ -1,6 +1,9 @@
+import py_stuff.image_transform as it
+import commands.send_wrapper as sw
+
 
 man_description = str(
-    "Demo showcase of color output"
+    "Demo showcase of color output. Work in progress.\nWhy? Because discord ansi thingamajig is the most disgusting thing ever.\nTo print a colored line of 60 characters, you actually need ~10-15x more.\nPlus you only really get 8 colors"
 )
 
 async def run(message):
@@ -33,3 +36,10 @@ async def run(message):
         "```"
         )
     await message.channel.send(ansi_bs)
+    input_image_path = './py_stuff/mario-hero.png'
+    target_width = 60 # Set target width for the ASCII art
+
+    converted_image = it.resize_and_convert_image_with_custom_palette(input_image_path, target_width, it.custom_palette)
+    ascii_art = it.generate_ascii_art(converted_image, it.custom_palette, it.ansi_colors, it.ansi_reset)
+    print (ascii_art)
+    await sw.wrapperSend_force_newline(message, ascii_art,'ansi')

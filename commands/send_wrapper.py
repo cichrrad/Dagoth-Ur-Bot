@@ -18,5 +18,30 @@ async def wrapperSend(message, contents, mode='normal'):
         if mode == 'mono':
             part = f"```\n{part}\n```"
         if mode == 'ansi':
-            part= f"```ansi\n{part}\n```"
+            part= f"```ansi\n{part}```"
         await message.channel.send(part)
+
+
+async def wrapperSend_force_newline(message, contents, mode='normal'):
+    max_length = 1900
+    parts = []
+
+    # Split contents by the maximum length, ensuring to end at a newline if possible
+    while len(contents) > max_length:
+        split_at = max_length
+        newline_index = contents.rfind('\n', 0, max_length)
+        if newline_index != -1:
+            split_at = newline_index + 1
+        parts.append(contents[:split_at])
+        contents = contents[split_at:]
+
+    parts.append(contents)  # Append the remainder of the contents
+    total_parts = len(parts)
+    
+    for i, part in enumerate(parts, start=1):
+        if mode == 'mono':
+            part = f"```\n{part}\n```"
+        if mode == 'ansi':
+            part= f"```ansi\n{part}```"
+        await message.channel.send(part)
+
