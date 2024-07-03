@@ -31,7 +31,7 @@ def resize_and_convert_image_with_custom_palette(input_path, target_width, palet
         if original_width > target_width:
             aspect_ratio = original_height / original_width
             new_height = int(target_width * aspect_ratio)
-            img = img.resize((target_width, new_height), Image.ANTIALIAS)
+            img = img.resize((target_width, new_height), Image.RASTERIZE)
         
         # Convert image to RGB
         img = img.convert("RGB")
@@ -49,21 +49,34 @@ def generate_ascii_art(image, palette, ansi_colors, ansi_reset):
     ascii_art = ""
     width, height = image.size
     pixels = image.load()
-    
+
     for y in range(height):
+        current_color = None
         for x in range(width):
             color_index = pixels[x, y]
             if color_index < len(ansi_colors):
-                ascii_art += f"{ansi_colors[color_index]}■{ansi_reset}"
+                if color_index != current_color:
+                    if current_color is not None:
+                        ascii_art += ansi_reset
+                    ascii_art += ansi_colors[color_index]
+                    current_color = color_index
+                ascii_art += "■"
             else:
                 ascii_art += " "
-        ascii_art += "\n"
+        ascii_art += ansi_reset + "\n"  # Ensure each row ends with a reset code
     
     return ascii_art
 
 # Example usage
-input_image_path = '/home/rdk/Projects/Dagoth-Ur-Bot/py_stuff/mario-hero.png'
-target_width = 111  # Set target width for the ASCII art
+# input_image_path = '/home/rdk/Projects/Dagoth-Ur-Bot/py_stuff/mario-hero.png'
+# target_width = 111  # Set target width for the ASCII art
 
-converted_image = resize_and_convert_image_with_custom_palette(input_image_path, target_width, custom_palette)
-ascii_art = generate_ascii_art(converted_image, custom_palette, ansi_colors, ansi_reset)
+# converted_image = resize_and_convert_image_with_custom_palette(input_image_path, target_width, custom_palette)
+# ascii_art = generate_ascii_art(converted_image, custom_palette, ansi_colors, ansi_reset)
+
+# # Print or save the ASCII art
+# output_ascii_path = '/home/rdk/Projects/Dagoth-Ur-Bot/py_stuff/ascii_art.txt'
+# with open(output_ascii_path, 'w') as f:
+#     f.write(ascii_art)
+
+# print("ASCII art generated and saved to:", output_ascii_path)

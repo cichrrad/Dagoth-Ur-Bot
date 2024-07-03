@@ -45,3 +45,21 @@ async def wrapperSend_force_newline(message, contents, mode='normal'):
             part= f"```ansi\n{part}```"
         await message.channel.send(part)
 
+
+async def wrapperSend_ansi(message, contents):
+    max_length = 1900  # Adjusted for safe message size
+    lines = contents.split('\n')
+    current_message = "```ansi\n"
+
+    for line in lines:
+        # Check if adding the next line will exceed the max_length
+        if len(current_message) + len(line) + len("\n```") > max_length:
+            current_message += "```"  # Close the current message block
+            await message.channel.send(current_message)
+            current_message = "```ansi\n"  # Start a new message block
+        
+        current_message += line + "\n"
+
+    current_message += "```"  # Close the last message block
+    await message.channel.send(current_message)
+
