@@ -9,7 +9,7 @@ import commands.send_wrapper as sw
 man_description = str(
     "**$ascii Command**\n"
     "Usage: `$ascii <width> <pasted picture>`\n"
-    "Description: Generates ASCII art of attached imaged (via paste or '+' button) of specified width. default width = 111.\n"
+    "Description: Generates ASCII art of attached imaged (via paste or '+' button) of specified width. default width = 111. Should you have problems with image rows overflow, try a smaller width or larger zoom out. Max width on largest zoomout is ~350\n"
     "Example:\n"
     "```\n"
     "$asci 200 * + picture *\n"
@@ -31,8 +31,12 @@ async def run(message):
     else:
         width = default
     
-    picture_url = str(message.attachments[0].url)
-    page = requests.get(picture_url)
+    try:
+        picture_url = str(message.attachments[0].url)
+        page = requests.get(picture_url)
+    except IndexError:
+        await message.channel.send("No image attached")
+        return
 
     f_ext = os.path.splitext(picture_url)[-1]
     f_name = 'img{}'.format(f_ext)
