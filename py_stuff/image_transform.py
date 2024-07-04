@@ -57,7 +57,7 @@ def resize_and_convert_image_with_custom_palette(input_path, target_width, palet
         if original_width > target_width:
             aspect_ratio = original_height / original_width
             new_height = int(target_width * aspect_ratio)
-            img = img.resize((target_width, new_height), Image.LANCZOS)
+            img = img.resize((target_width, new_height), Image.RASTERIZE)
         
         # Convert image to RGB
         img = img.convert("RGB")
