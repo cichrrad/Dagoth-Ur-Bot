@@ -1,6 +1,6 @@
 from PIL import Image
 
-# Define the custom palette (using the colors you specified)
+# Define the custom ANSI palette (using the colors you specified)
 ansi_palette = [
     79, 84, 92,   # Dark gray
     220, 50, 47,  # Red
@@ -12,7 +12,7 @@ ansi_palette = [
     255, 255, 255 # White
 ] + [0] * (256 * 3 - 24)  # Fill the rest of the palette with zeros
 
-# Define the custom palette (using the colors you specified)
+# Define the custom emoji palette (using the colors you specified)
 emoji_palette = [
     244, 67, 54,  # Red
     255, 152, 0,  # Orange
@@ -21,9 +21,9 @@ emoji_palette = [
     25, 118, 210, # Blue
     171, 71, 188, # Purple
     183, 109, 84, # Brown
-    66, 66, 66, # Gray
+    66, 66, 66,   # Gray
     224, 224, 224 # Light gray / white
-] + [0] * (256 * 3 - 23)  # Fill the rest of the palette with zeros
+] + [0] * (256 * 3 - 27)  # Fill the rest of the palette with zeros
 
 # ANSI escape codes for Discord
 ansi_colors = [
@@ -38,13 +38,26 @@ ansi_colors = [
 ]
 ansi_reset = "\u001b[0;0m"
 
+# Emoji representations for the colors
+emoji_colors = [
+    "🟥",  # Red
+    "🟧",  # Orange
+    "🟨",  # Yellow
+    "🟩",  # Green
+    "🟦",  # Blue
+    "🟪",  # Purple
+    "🟫",  # Brown
+    "⬛",  # Gray
+    "⬜"   # Light gray / white
+]
+
 def resize_and_convert_image_with_custom_palette(input_path, target_width, palette):
     with Image.open(input_path) as img:
         original_width, original_height = img.size
         if original_width > target_width:
             aspect_ratio = original_height / original_width
             new_height = int(target_width * aspect_ratio)
-            img = img.resize((target_width, new_height), Image.RASTERIZE)
+            img = img.resize((target_width, new_height), Image.LANCZOS)
         
         # Convert image to RGB
         img = img.convert("RGB")
@@ -80,16 +93,19 @@ def generate_ascii_art(image, palette, ansi_colors, ansi_reset):
     
     return ascii_art
 
-# Example usage
-# input_image_path = '/home/rdk/Projects/Dagoth-Ur-Bot/py_stuff/mario-hero.png'
-# target_width = 111  # Set target width for the ASCII art
+def generate_emoji_art(image, emoji_colors):
+    emoji_art = ""
+    width, height = image.size
+    pixels = image.load()
 
-# converted_image = resize_and_convert_image_with_custom_palette(input_image_path, target_width, custom_palette)
-# ascii_art = generate_ascii_art(converted_image, custom_palette, ansi_colors, ansi_reset)
+    for y in range(height):
+        for x in range(width):
+            color_index = pixels[x, y]
+            if color_index < len(emoji_colors):
+                emoji_art += emoji_colors[color_index]
+            else:
+                emoji_art += "⬛"
+        emoji_art += "\n"
+    
+    return emoji_art
 
-# # Print or save the ASCII art
-# output_ascii_path = '/home/rdk/Projects/Dagoth-Ur-Bot/py_stuff/ascii_art.txt'
-# with open(output_ascii_path, 'w') as f:
-#     f.write(ascii_art)
-
-# print("ASCII art generated and saved to:", output_ascii_path)
