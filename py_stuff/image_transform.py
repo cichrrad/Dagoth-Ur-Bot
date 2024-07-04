@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Define the custom palette (using the colors you specified)
-custom_palette = [
+ansi_palette = [
     79, 84, 92,   # Dark gray
     220, 50, 47,  # Red
     133, 153, 0,  # Olive
@@ -11,6 +11,19 @@ custom_palette = [
     42, 161, 152, # Teal
     255, 255, 255 # White
 ] + [0] * (256 * 3 - 24)  # Fill the rest of the palette with zeros
+
+# Define the custom palette (using the colors you specified)
+emoji_palette = [
+    244, 67, 54,  # Red
+    255, 152, 0,  # Orange
+    255, 204, 50, # Yellow
+    124, 179, 66, # Green
+    25, 118, 210, # Blue
+    171, 71, 188, # Purple
+    183, 109, 84, # Brown
+    66, 66, 66, # Gray
+    224, 224, 224 # Light gray / white
+] + [0] * (256 * 3 - 23)  # Fill the rest of the palette with zeros
 
 # ANSI escape codes for Discord
 ansi_colors = [

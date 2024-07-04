@@ -12,7 +12,7 @@ man_description = str(
 async def run(message):
     ansi_bs = str(
         "```ansi\n"
-        "\u001b[0;30m■■\u001b[0;0m■\n"
+        "\u001b[0;30mGray\u001b[0;0m\n"
         "\u001b[0;31mRed\u001b[0;0m\n"
         "\u001b[0;32mGreen\u001b[0;0m\n"
         "\u001b[0;33mYellow\u001b[0;0m\n"
@@ -43,9 +43,9 @@ async def run(message):
     await message.channel.send("\n WORK IN PROGRESS")
     
     input_image_path = random.choice(glob.glob('./py_stuff/*.png'))
-    target_width = 120 # Set target width for the ASCII art
+    target_width = 80 # Set target width for the ASCII art
 
-    converted_image = it.resize_and_convert_image_with_custom_palette(input_image_path, target_width, it.custom_palette)
-    ascii_art = it.generate_ascii_art(converted_image, it.custom_palette, it.ansi_colors, it.ansi_reset)
+    converted_image = it.resize_and_convert_image_with_custom_palette(input_image_path, target_width, it.ansi_palette)
+    ascii_art = it.generate_ascii_art(converted_image, it.ansi_palette, it.ansi_colors, it.ansi_reset)
     print (ascii_art)
     await sw.wrapperSend_ansi(message, ascii_art)
