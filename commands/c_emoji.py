@@ -46,5 +46,5 @@ async def run(message):
     converted_image = it.resize_and_convert_image_with_custom_palette(f_name, width, it.emoji_palette)
     emoji_art = it.generate_emoji_art(converted_image, it.emoji_colors)
     os.remove(f"{f_name}")
-    #print (emoji_art)
+    # print (emoji_art)
     await sw.wrapperSend(message, emoji_art,'mono')
