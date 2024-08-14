@@ -24,6 +24,6 @@ frames =str(
 )
 
 async def run(message):
-    await a_cli.animate(message,frames,250,5)
+    await a_cli.animate(message,frames,500,5)
     await sw.wrapperSend(message, "Pendulum animation completed!")
     return
