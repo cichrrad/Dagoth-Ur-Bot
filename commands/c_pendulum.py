@@ -1,6 +1,12 @@
 import commands.animate_cli as a_cli
 import commands.send_wrapper as sw
 
+man_description = str(
+    "**$pendulum Command**\n"
+    "Usage: `$pendulum`\n"
+    "Description: Pendulum animation"
+)
+
 frames =str(
 "╔════╤╤╤╤════╗\n" 
 "║    │││ \\   ║\n" 

@@ -1,6 +1,12 @@
 import commands.animate_cli as a_cli
 import commands.send_wrapper as sw
 
+man_description = str(
+    "**$tableflip Command**\n"
+    "Usage: `$tableflip`\n"
+    "Description: Table flip animation"
+)
+
 frames = str(
     
     '(ヘ°-°)ヘ ┬─┬ \xa0'
@@ -14,8 +20,6 @@ frames = str(
     '(ヘ°-°)ヘ ┬─┬ \xa0'
     '\n#!\n'
     '(ヘ°-°)ヘ ┬─┬ \xa0'
-    '\n#!\n'
-    '(ヘ‵□′)ヘ ┬─┬ \xa0'
     '\n#!\n'
     '(ヘ‵□′)ヘ ┬─┬ \xa0'
     '\n#!\n'
@@ -62,13 +66,9 @@ frames = str(
     '(ಥ-ಥ） ┻ ━┻ '
     '\n#!\n'
     '(ಥ-ಥ） ┻ ━┻ '
-    '\n#!\n'
-    '(ಥ-ಥ） ┻ ━┻ '
-    '\n#!\n'
-
 )
 
 async def run(message):
-    await a_cli.animate(message,frames,250,1)
+    await a_cli.animate(message,frames,500,1)
     await sw.wrapperSend(message, "Table flip animation completed!")
     return
