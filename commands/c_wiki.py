@@ -1,6 +1,6 @@
 import wikipedia
 
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 # TODO handle branching to different wiki pages in case of ambiguity
 

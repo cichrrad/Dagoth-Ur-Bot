@@ -1,5 +1,5 @@
 from translate import Translator as t
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 # TODO maybe parse options to let the user specify input language ? autodetect seem to work though
 

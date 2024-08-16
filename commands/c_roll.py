@@ -1,6 +1,6 @@
 import random
 
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 man_description = str(
     "**$roll Command**\n"

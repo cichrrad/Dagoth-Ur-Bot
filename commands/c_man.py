@@ -1,6 +1,6 @@
 import importlib.util
 import sys
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 
 man_description = str(

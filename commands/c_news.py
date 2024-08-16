@@ -1,5 +1,5 @@
 from gnews import GNews
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 man_description = str(
     "**$news Command**\n"

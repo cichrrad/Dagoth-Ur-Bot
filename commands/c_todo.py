@@ -2,7 +2,7 @@
 # NOTE you need to create your own .todo file in the root directory of the bot (not in the commands folder)
 # it is not included as the lists are stored in this folder in plain text (very secure) 
 
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 import os
 
 man_description = str(

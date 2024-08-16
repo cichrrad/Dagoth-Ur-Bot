@@ -1,7 +1,7 @@
 import py_stuff.grammar as gr
 import random
 
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 man_description = str(
     "**$morrowgen Command**\n"

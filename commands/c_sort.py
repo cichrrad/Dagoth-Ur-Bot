@@ -1,5 +1,5 @@
-import commands.send_wrapper as sw
-import commands.option_parser as op
+import py_stuff.send_wrapper as sw
+import py_stuff.option_parser as op
 
 man_description=str(
     "**$sort Command**\n"

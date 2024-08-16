@@ -1,5 +1,5 @@
-import commands.animate_cli as a_cli
-import commands.send_wrapper as sw
+import py_stuff.animate_cli as a_cli
+import py_stuff.send_wrapper as sw
 
 man_description = str(
     "**$pendulum Command**\n"

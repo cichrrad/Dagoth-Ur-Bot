@@ -2,7 +2,7 @@
 import heapq
 from collections import defaultdict
 import py_stuff.huffman as hf
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 
 man_description = str(
     "**$hufftree Command**\n"

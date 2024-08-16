@@ -1,4 +1,4 @@
-import commands.send_wrapper as sw
+import py_stuff.send_wrapper as sw
 import asyncio
 
 man_description = str(
