@@ -11,6 +11,7 @@ import asyncio
 import os
 
 import py_stuff.send_wrapper as sw
+import py_stuff.session_binding as sb
 import discord
 #import Commands_core as commands
 import configparser
@@ -100,14 +101,6 @@ async def on_message(message):
         else:
             print(f"Did not find '{command}' in known commands...")
             await message.channel.send(f"I don't recognize \"{command}\" as a command.")
-
-    #Check, whether the author is bound with the bot on this channel on this server 
-    # = try to find in "{message.author},{message.channel},{message.guild}" in .bound_sessions
-    if message.author.name + ',' + message.channel.name + ',' + message.guild.name in open('.bound_sessions').read():
-        print(f"Session found for [{message.author}] in [{message.channel}] on [{message.guild}]")
-        await sw.wrapperSend(message,message.content)
-    else:
-        print(f"Session not found for [{message.author}] in [{message.channel}] on [{message.guild}]")
-    
+  
 # Start the bot
 bot_client.run(bot_token)

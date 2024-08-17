@@ -1,4 +1,5 @@
 import py_stuff.send_wrapper as sw
+import py_stuff.session_binding as sb
 import os
 
 man_description = str(
@@ -10,12 +11,10 @@ man_description = str(
 
 
 async def run(message):
-    
-    #add "{message.author},{message.channel},{message.guild}" to .bound_sessions
-
-    if f"{message.author},{message.channel},{message.guild}" in open('.bound_sessions').read():
-        await sw.wrapperSend(message,f"Session already bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
-        return
-    await sw.wrapperSend(message,f"Session bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
-    with open('.bound_sessions', 'a') as f:
-        f.write(f"{message.author},{message.channel},{message.guild}\n")
+    #split message
+    content = message.content
+    args = content.split(' ', 1)
+    # TODO - add error handling for no args
+    _type = args[1]
+    await sb.bind(message,_type)
+    return

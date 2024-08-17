@@ -1,4 +1,5 @@
 import py_stuff.send_wrapper as sw
+import py_stuff.session_binding as sb
 import os 
 
 man_description = str(
@@ -8,14 +9,6 @@ man_description = str(
 )
 
 async def run(message):
-    if f"{message.author},{message.channel},{message.guild}" not in open('.bound_sessions').read():
-        await sw.wrapperSend(message,f"Session not bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
-        return
-    await sw.wrapperSend(message,f"Session unbound for [{message.author}] in [{message.channel}] on [{message.guild}]")
-    with open('.bound_sessions', 'r') as f:
-        lines = f.readlines()
-    with open('.bound_sessions', 'w') as f:
-        for line in lines:
-            if f"{message.author},{message.channel},{message.guild}" not in line:
-                f.write(line)
+    
+    await sb.unbind(message)
     return
