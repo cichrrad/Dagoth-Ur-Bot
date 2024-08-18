@@ -4,7 +4,7 @@ I promise (nor regret) nothing
 
 Abomination. 
 
-Run ```$commands``` to list enabled commands.
+Run ```$list``` to list enabled commands.
 
 You can also use ```$man [command]``` to get a manual page for said command.
 
