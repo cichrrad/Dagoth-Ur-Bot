@@ -6,11 +6,14 @@ man_description = str(
     "**$bind Command**\n"
     "Usage: `$bind [session type]`\n"
     "Description: Creates a session for multi-message/interactive commands. Allows each user to have 1 session per channel. Only registers authors messages in that channel.\n"
+    "Valid session types are:\n"
+    "```\n" + ', '.join(open('.session_names').read().splitlines()) + "```"
     "Example:\n"
     "```\n"
     "$bind shout\n"
     "```\n"
     "The bot will remove users messages and repeat them back in all-caps and bold."
+
 )
 
 
