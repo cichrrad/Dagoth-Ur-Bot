@@ -10,12 +10,13 @@ import os
 async def bind(message,_type):
     #note - .bound_sessions is in the root dir -> ../ from here
     if f"{message.author}:{message.channel}:{message.guild}" in open('.bound_sessions').read():
-        await sw.wrapperSend(message,f"Session already bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
+        currType = open('.bound_sessions').readlines()[0].split(':')[3].replace('\n','')
+        await sw.wrapperSend(message,f"Session of type **{currType}** already bound for **{message.author}** in **{message.channel}** on **{message.guild}**.\nOnly one session per user in a given channel is allowed.")
         for line in open('.bound_sessions').readlines():
             if f"{message.author}:{message.channel}:{message.guild}" in line:
                 print (line)
         return
-    await sw.wrapperSend(message,f"Session bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
+    # await sw.wrapperSend(message,f"Session bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
     with open('.bound_sessions', 'a') as f:
         f.write(f"{message.author}:{message.channel}:{message.guild}:{_type}\n")
     return
@@ -23,9 +24,9 @@ async def bind(message,_type):
 async def unbind(message):
     
     if f"{message.author}:{message.channel}:{message.guild}" not in open('.bound_sessions').read():
-        await sw.wrapperSend(message,f"Session not bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
+        await sw.wrapperSend(message,f"Nothing to unbind.")
         return
-    await sw.wrapperSend(message,f"Session unbound for [{message.author}] in [{message.channel}] on [{message.guild}]")
+    await sw.wrapperSend(message,f"Session unbound for **{message.author}** in **{message.channel}** on **{message.guild}**")
     with open('.bound_sessions', 'r') as f:
         lines = f.readlines()
     with open('.bound_sessions', 'w') as f:

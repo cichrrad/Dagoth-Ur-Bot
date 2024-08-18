@@ -33,9 +33,20 @@ for file in os.listdir('./commands/'):
         command_names.append(file[2:-3])
 print(f"Commands found: {command_names}")
 
+session_names = []
+for file in os.listdir('./sessions/'):
+    if file.endswith('.py') and file.startswith('s_'):
+        session_names.append(file[2:-3])
+print(f"Session commands (interactive/multi message commands) found: {session_names}")
+
 # Save command_names to .command_names file
 with open('.command_names', 'w') as f:
     f.write('\n'.join(command_names))
+
+# Save session_names to .session_names file
+with open('.session_names', 'w') as f:
+    f.write('\n'.join(session_names))
+
 
 bot_client = discord.Client(intents=intents)
 
@@ -101,6 +112,15 @@ async def on_message(message):
         else:
             print(f"Did not find '{command}' in known commands...")
             await message.channel.send(f"I don't recognize \"{command}\" as a command.")
-  
+    #process sessions, if the author has one ongoing in this channel
+    if f"{message.author}:{message.channel}:{message.guild}" in open('.bound_sessions').read():
+        session_type = open('.bound_sessions').readlines()[0].split(':')[3].replace('\n','')
+        print(f"Found ongoing session of type {session_type} for {message.author} in {message.channel} on {message.guild}")
+        try:
+            await asyncio.create_task(run_function_from_file(f'./sessions/s_{session_type}.py', message))
+            print(f"Finished running session of type {session_type}")
+        except Exception as e:
+            print(f"Error running session of type {session_type}: {e}")
+    
 # Start the bot
 bot_client.run(bot_token)
