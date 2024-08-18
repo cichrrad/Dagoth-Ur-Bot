@@ -4,8 +4,13 @@ import os
 
 man_description = str(
     "**$bind Command**\n"
-    "Usage: `$bind`\n"
-    "Description: Binds the current session to a user, channel, and guild. WIP, do not use, unless you know what you're doing\n"
+    "Usage: `$bind [session type]`\n"
+    "Description: Creates a session for multi-message/interactive commands. Allows each user to have 1 session per channel. Only registers authors messages in that channel.\n"
+    "Example:\n"
+    "```\n"
+    "$bind shout\n"
+    "```\n"
+    "The bot will remove users messages and repeat them back in all-caps and bold."
 )
 
 

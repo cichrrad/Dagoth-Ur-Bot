@@ -112,6 +112,7 @@ async def on_message(message):
         else:
             print(f"Did not find '{command}' in known commands...")
             await message.channel.send(f"I don't recognize \"{command}\" as a command.")
+    
     #process sessions, if the author has one ongoing in this channel
     if f"{message.author}:{message.channel}:{message.guild}" in open('.bound_sessions').read():
         session_type = open('.bound_sessions').readlines()[0].split(':')[3].replace('\n','')
@@ -121,6 +122,6 @@ async def on_message(message):
             print(f"Finished running session of type {session_type}")
         except Exception as e:
             print(f"Error running session of type {session_type}: {e}")
-    
+
 # Start the bot
 bot_client.run(bot_token)

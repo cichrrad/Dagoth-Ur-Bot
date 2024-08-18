@@ -5,7 +5,7 @@ import os
 man_description = str(
     "**$unbind Command**\n"
     "Usage: `$unbind`\n"
-    "Description: Unbinds the current session from a user, channel, and guild. WIP, do not use, unless you know what you're doing\n"
+    "Description: Removes currently bound ongoing session (interactive/multi-message commands) for the user in this channel."    
 )
 
 async def run(message):
