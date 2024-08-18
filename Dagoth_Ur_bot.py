@@ -115,7 +115,10 @@ async def on_message(message):
     
     #process sessions, if the author has one ongoing in this channel
     if f"{message.author}:{message.channel}:{message.guild}" in open('.bound_sessions').read():
-        session_type = open('.bound_sessions').readlines()[0].split(':')[3].replace('\n','')
+        #identify session type
+        for line in open('.bound_sessions').readlines():
+            if f"{message.author}:{message.channel}:{message.guild}" in line:
+                session_type = line.split(':')[3].replace('\n','')
         print(f"Found ongoing session of type {session_type} for {message.author} in {message.channel} on {message.guild}")
         try:
             await asyncio.create_task(run_function_from_file(f'./sessions/s_{session_type}.py', message))

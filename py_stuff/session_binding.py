@@ -18,7 +18,7 @@ async def bind(message,_type):
         return
     # await sw.wrapperSend(message,f"Session bound for [{message.author}] in [{message.channel}] on [{message.guild}]")
     with open('.bound_sessions', 'a') as f:
-        f.write(f"{message.author}:{message.channel}:{message.guild}:{_type}\n")
+        f.write(f"{message.author}:{message.channel}:{message.guild}:{_type}:\n")
     return
 
 async def unbind(message):
