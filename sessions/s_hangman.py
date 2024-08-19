@@ -2,7 +2,8 @@ import py_stuff.send_wrapper as sw
 import os
 import py_stuff.session_binding as sb
 import random
-
+import time
+import asyncio
 
 hangman_sprites = [
        str(
@@ -63,6 +64,9 @@ hangman_sprites = [
 
 async def run(message):
        #check if game is already in progress by lookin at the session line in .bound_sessions
+
+       # TODO implement file locking to prevent race conditions ?
+       
        for line in open('.bound_sessions').readlines():
               if f"{message.author}:{message.channel}:{message.guild}:hangman:" in line:
                      line_index = open('.bound_sessions').readlines().index(line)
@@ -158,16 +162,18 @@ async def process_guess(message, word, incorrect_guesses, tried_letters, guess,l
                    f.write(line)
                else:
                    f.write(lines[i])
-
+       await sw.wrapperSend(message,f"I am ready for your next guess.")
 
 
 async def print_game(message, word, incorrect_guesses, tried_letters):
 
+       # pretty but slow
+       #sprite = open('assets/ascii/hangman/hangman_sprite_' + str(incorrect_guesses) + '.ascii').read()
        sprite = hangman_sprites[incorrect_guesses]
        await sw.wrapperSend(message, sprite, 'mono')
        hint = word
        for char in word:
               if char.upper() not in tried_letters.upper():
                      hint = hint.replace(char, '#')
-       await sw.wrapperSend(message, hint)
+       await sw.wrapperSend(message,hint)
        return
