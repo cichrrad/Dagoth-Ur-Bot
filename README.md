@@ -1,4 +1,4 @@
-I promise (nor regret) nothing 
+I promise (and regret) nothing 
 
 # Dagoth Ur bot
 
